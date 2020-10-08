@@ -1,7 +1,7 @@
 {
     "name": "mdr-cli",
-    "version": "0.0.1",
-    "description": "",
+    "version": "0.0.2",
+    "description": "cli to interact with the mijndomeinreseller api",
     "main": "dist/cli.js",
     "author": {
         "name": "Pepijn van den Broek",
@@ -26,8 +26,10 @@
     "dependencies": {
         "@iarna/toml": "^2.2.5",
         "axios": "^0.20.0",
+        "chalk": "^4.1.0",
         "clime": "^0.5.14",
         "dotenv": "^8.2.0",
+        "winston": "^3.3.3",
         "yn": "^4.0.0"
     },
     "devDependencies": {
@@ -42,7 +44,6 @@
         "nodemon": "^2.0.4",
         "prettier": "^2.1.2",
         "ts-node": "^9.0.0",
-        "tsconfig-paths": "^3.9.0",
         "typescript": "^4.0.3"
     }
 }

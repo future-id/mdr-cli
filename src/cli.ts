@@ -3,7 +3,7 @@
 import path from "path";
 import { constants, promises as fs } from "fs";
 import { CLI, Shim } from "clime";
-import { CONFIG_DIR, CONFIG_FILE, getConfig } from "./utils";
+import { CONFIG_DIR, CONFIG_FILE, getConfig, logger } from "./utils/Utils";
 
 const defaults = `authType = "md5"
 user = "" # mdr username
@@ -23,7 +23,7 @@ async function main(): Promise<void> {
         await fs.access(CONFIG_FILE, constants.F_OK | constants.W_OK | constants.R_OK);
     } catch (e) {
         await fs.writeFile(CONFIG_FILE, defaults, "utf-8");
-        console.log(`Config file created at ${CONFIG_FILE}.\nPlease edit with a username and password before continuing!`);
+        logger.info(`Config file created at ${CONFIG_FILE}. Please edit with a username and password before continuing!`);
         process.exit(0);
     }
 
@@ -42,6 +42,6 @@ async function main(): Promise<void> {
 }
 
 main().catch((e) => {
-    console.error(e);
+    logger.error(e);
     process.exit(1);
 });

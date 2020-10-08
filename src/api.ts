@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { Config, getConfig } from "./utils";
+import { Config, getConfig, logger } from "./utils/Utils";
 import axios, { AxiosResponse } from "axios";
 
 type ParsedData = Record<string, string>;
@@ -14,6 +14,8 @@ class Api {
         this.config = await getConfig();
         if (this.config.authType === "md5") {
             this.password = crypto.createHash("md5").update(this.config.password).digest("hex");
+        } else {
+            this.password = this.config.password;
         }
         this.#intitialized = true;
     }
@@ -26,10 +28,6 @@ class Api {
         this.#query += `${name}=${encodeURIComponent(value)}&`;
     }
 
-    // errcount=1
-    // errno1=000005
-    // errnotxt1=Ongeldig ipadres
-    // done=true
     private _parse(data: string): ParsedData {
         const result: Record<string, string> = {};
         const lines = data.split("\n");
@@ -47,7 +45,8 @@ class Api {
 
     async send(): Promise<ParsedData> {
         if (!this.#intitialized) {
-            throw Error("Tried to send before class finished initializing");
+            logger.error("Tried to send before class finished initializing");
+            process.exit(1);
         }
 
         this.addParam("user", this.config.user);
@@ -58,12 +57,28 @@ class Api {
         let response: AxiosResponse<string>;
         if (this.config.useSSL) {
             port = 443;
-            response = await axios.get(`ssl://${this.config.host}${this.config.apiPath}:${port}${this.#query}`);
+            response = await axios.get(`https://${this.config.host}:${port}${this.config.apiPath}${this.#query}`);
         } else {
-            response = await axios.get(`https://${this.config.host}${this.config.apiPath}:${port}${this.#query}`);
+            response = await axios.get(`http://${this.config.host}:${port}${this.config.apiPath}${this.#query}`);
         }
 
-        return this._parse(response.data);
+        const parsed = this._parse(response.data);
+
+        let errcount = 0;
+        try {
+            errcount = parseInt(parsed.errcount);
+        } catch (e) {
+            // errcount == 0
+        }
+
+        if (errcount >= 1) {
+            for (let i = 1; i <= errcount; i++) {
+                logger.error(`[${parsed["errno" + i]}] ${parsed["errnotxt" + i]}`);
+            }
+            process.exit(1);
+        }
+
+        return parsed;
     }
 }
 
