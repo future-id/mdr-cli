@@ -3,12 +3,15 @@
     "version": "0.0.2",
     "description": "cli to interact with the mijndomeinreseller api",
     "main": "dist/cli.js",
+    "license": "MIT",
     "author": {
         "name": "Pepijn van den Broek",
         "email": "pepijn@vdbroek.dev",
         "url": "https://vdbroek.dev/"
     },
-    "license": "MIT",
+    "engines": {
+        "node": ">=14"
+    },
     "bin": {
         "mdr": "./dist/cli.js"
     },
