@@ -19,7 +19,7 @@ export default class extends Command {
             const config = await getConfig();
 
             if (config.authType === "plain" && res === false) {
-                logger.error("Can't set ssl to false when auth type is \"plain\"");
+                logger.error('Can\'t set ssl to false when auth type is "plain"');
                 process.exit(1);
             }
 
