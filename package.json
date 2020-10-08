@@ -24,7 +24,7 @@
         "lint": "eslint \"src/**/*.{ts,js}\" --fix",
         "pretty": "npm run format && npm run lint",
         "clean": "rm -rf ./node_modules ./package-lock.json ./yarn.lock",
-        "setup": "cp ./.env.example ./.env && npm install && npm run build && npm link"
+        "setup": "npm install && npm run build && npm link"
     },
     "dependencies": {
         "@iarna/toml": "^2.2.5",
