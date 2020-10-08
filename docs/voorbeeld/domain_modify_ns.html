@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Voorbeeld: domain_modify_ns</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Voorbeeld: <I>domain_modify_ns</I></SPAN>
+<BR><BR>
+<B>Voorbeeld 1</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command", "domain_modify_ns"    );
+
+ $mdr->addParam( "domein",  "mijndomeinreseller"   );
+ $mdr->addParam( "tld",     "nl"                   );
+
+ $mdr->addParam( "ns1",     "ns1.mijndnsserver.nl" );
+ $mdr->addParam( "ns2",     "ns2.mijndnsserver.nl" );
+ $mdr->addParam( "ns3",     "ns3.mijndnsserver.nl" );
+
+ $mdr->DoTransaction();
+
+ if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+  else {
+  print "OK";
+ }
+</PRE>
+
+<BR>
+
+<B>Voorbeeld 2</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command"       "domain_modify_ns"    );
+
+ $mdr->addParam( "domein",       "mijndomeinreseller"  );
+ $mdr->addParam( "tld",          "com"                 );
+
+ $mdr->addParam( "gebruik_dns",  "true"                );
+ $mdr->addParam( "dns_template", "template_server_1"   );
+
+ $mdr->DoTransaction();
+
+ if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK";
+ }
+</PRE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

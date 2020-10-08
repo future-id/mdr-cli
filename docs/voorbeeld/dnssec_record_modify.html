@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Voorbeeld: dnssec_record_modify</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Voorbeeld: <I>dnssec_record_modify</I></SPAN>
+<BR><BR>
+<B>Voorbeeld 1</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command", "dnssec_record_modify" );
+ $mdr->addParam( "domein",  "mijndomeinreseller"   );
+ $mdr->addParam( "tld",     "nl"                   );
+
+ $mdr->addParam( "record_id", "14672"              );
+ $mdr->addParam( "flag",      "257"                );
+ $mdr->addParam( "algorithm", "5"                  );
+ $mdr->addParam( "publickey", "AwEAAc/vVh5j4Oqkn0LrCblVR/vsU5OFCi5hFmYcT8FJcweL7VDfbolz F+LliBSpuuPNXSf3eE9fQgboAVVCrECCuxGy0Cv+6Sd5aYThv/p60jdf 4qFATMhiQSuudUHPUEriNqOug7mMYAVNJYmM6i84FVUcejbWx6YV3OUx uyqDQMt1UESSAiRWOZUVJJR+ce6ygEz/W0hGf5RVTsUlnbrdp/fTiEQu TeRShV0/5vaiP1cTLab2ijA2y8bVbyS9sxPvRmgq593sFzw2DfAxxQ6b 8ZGHjR1bzdgJ2hg3VNHMq6e+g+eldn8o7T4mLeGSN0i0a7YxAI0AIPLz e8+tB6nJUbM="  );
+
+ $mdr->DoTransaction();
+
+ if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ } else {
+  print "OK&lt;BR>";
+  print "record_id: " . $mdr->Values[ "record_id" ];
+ }
+</PRE>
+
+
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

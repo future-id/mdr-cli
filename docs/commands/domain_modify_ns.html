@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Command: domain_modify_ns</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Command: <I>domain_modify_ns</I></SPAN>
+<BR><BR>
+<B>Omschrijving</B><BR>
+<BR>
+Wijzig de nameservers van een domeinnaam<BR>
+
+<BR>
+
+<B>Invoer parameters</B><BR>
+<BR>
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="900">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="350">Waarde</TD>
+	  <TD class="aHead" width="350">Verplicht</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">user</TD>
+		<TD class="a">Username API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">pass</TD>
+		<TD class="a">Wachtwoord API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">authtype</TD>
+		<TD class="a">Wachtwoord wordt verzonden in plaintext/md5<BR> waarden: plain/md5</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">domein</TD>
+		<TD class="a">Domeinnaam</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">tld</TD>
+		<TD class="a">TLD (extensie) van domeinnaam</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">gebruik_dns</TD>
+		<TD class="a">Gebruik de nameservers van MijnDomeinReseller, waarden: true/false</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">dns_template</TD>
+		<TD class="a">Naam van DNS template</TD>
+		<TD class="a">Nee, alleen mogelijk i.c.m. gebruik_dns=true</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">ns_id</TD>
+		<TD class="a">nameserverID van nameserverset</TD>
+		<TD class="a">Ja, als ns1, ns1_ip, ns2 en ns2_ip niet is opgegeven en gebruik_dns = false</TD>
+	</TR>
+	<TR>
+		<TD class="a">ns1</TD>
+		<TD class="a">Nameserver 1</TD>
+		<TD class="a">Ja, als ns_id niet is opgegeven en gebruik_dns = false</TD>
+	</TR>
+	<TR>
+		<TD class="a">ns1_ip</TD>
+		<TD class="a">Ipadres van Nameserver 1</TD>
+		<TD class="a">Ja, Als ns1 is <I>nsX.domein.tld</I></TD>
+	</TR>
+	<TR>
+		<TD class="a">ns2</TD>
+		<TD class="a">Nameserver 2</TD>
+		<TD class="a">Ja, als ns_id niet is opgegeven en gebruik_dns = false</TD>
+	</TR>
+	<TR>
+		<TD class="a">ns2_ip</TD>
+		<TD class="a">Ipadres van Nameserver 2</TD>
+		<TD class="a">Ja, Als ns2 is <I>nsX.domein.tld</I></TD>
+	</TR>
+	<TR>
+		<TD class="a">ns3</TD>
+		<TD class="a">Nameserver 3</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">ns3_ip</TD>
+		<TD class="a">Ipadres van Nameserver 3</TD>
+		<TD class="a">Ja, Als ns3 is opgegeven en ns3 is <I>nsX.domein.tld</I></TD>
+	</TR>
+</TABLE>
+
+<BR><BR>
+<B>Uitvoer parameters</B><BR>
+<BR>
+
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="700">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="300">Waarde</TD>
+	</TR>
+	<TR>
+	  <TD class="a">errcount</TD>
+	  <TD class="a">0</TD>
+	</TR>
+	<TR>
+	  <TD class="a">done</TD>
+	  <TD class="a">true</TD>
+	</TR>
+</TABLE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

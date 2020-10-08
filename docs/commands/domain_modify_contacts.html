@@ -1,0 +1,461 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Command: domain_modify_contacts</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Command: <I>domain_modify_contacts</I></SPAN>
+<BR><BR>
+<B>Omschrijving</B><BR>
+<BR>
+Wijzig de contacten van een domeinnaam<BR>
+
+<BR>
+
+<B>Invoer parameters</B><BR>
+<BR>
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="900">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="350">Waarde</TD>
+	  <TD class="aHead" width="350">Verplicht</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">user</TD>
+		<TD class="a">Username API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">pass</TD>
+		<TD class="a">Wachtwoord API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">authtype</TD>
+		<TD class="a">Wachtwoord wordt verzonden in plaintext/md5<BR> waarden: plain/md5</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">domein</TD>
+		<TD class="a">Domeinnaam voor registratie</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">tld</TD>
+		<TD class="a">TLD (extensie) van domeinnaam</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3"><I><B>Wijzig admin en tech contact .nl domeinnaam</B></I><BR><BR></TD>
+	</TR>
+  <TR>
+		<TD class="a"><I>admin</I>_id</TD>
+		<TD class="a">ContactID van het admin contact</TD>
+		<TD class="a">Ja, als admin_bedrijfsnaam ~ admin_email niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_bedrijfsnaam</TD>
+		<TD class="a">Bedrijfsnaam van admin contact</TD>
+		<TD class="a">Ja, als admin_id niet is opgegeven en admin contact is een bedrijf</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_rechtsvorm</TD>
+		<TD class="a">Rechtsvorm van van admin contact (bijlage 2)</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_regnummer</TD>
+		<TD class="a">Registratienummer van bedrijfsnaam van admin contact</TD>
+		<TD class="a">Ja, als admin_id niet is opgegeven en rechtsvorm is: <I>bv, bv i/o, cv, coop, eenmanszaak,<BR>owm, stichting, nv</I> of <I>vof</I></TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_voorletter</TD>
+		<TD class="a">Voornaam van admin contact</TD>
+		<TD class="a">Ja, als admin_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_tussenvoegsel</TD>
+		<TD class="a">Tussenvoegsel van <I>contact</I></TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_achternaam</TD>
+		<TD class="a">Achternaam van admin contact</TD>
+    <TD class="a">Ja, als admin_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_straat</TD>
+		<TD class="a">Straat van admin contact</TD>
+		<TD class="a">Ja, als admin_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_huisnr</TD>
+		<TD class="a">Huisnummer van admin contact</TD>
+		<TD class="a">Ja, als admin_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_huisnrtoev</TD>
+		<TD class="a">Huisnummer toevoeging van admin contact</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_postcode</TD>
+		<TD class="a">Postcode van van admin contact</TD>
+    <TD class="a">Ja, als admin_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_plaats</TD>
+		<TD class="a">Plaats van admin contact</TD>
+    <TD class="a">Ja, als admin_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_land</TD>
+		<TD class="a">Landcode (bijlage 3) van admin contact</TD>
+    <TD class="a">Ja, als admin_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_tel</TD>
+		<TD class="a">Telefoonnummer van admin contact (zonder landcode)</TD>
+		<TD class="a">Ja, als admin_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">admin_email</TD>
+		<TD class="a">Emailadres van admin contact</TD>
+		<TD class="a">Ja, als admin_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+  <TR>
+		<TD class="a"><I>tech</I>_id</TD>
+		<TD class="a">ContactID van het tech contact</TD>
+		<TD class="a">Ja, als tech_bedrijfsnaam ~ tech_email niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_bedrijfsnaam</TD>
+		<TD class="a">Bedrijfsnaam van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven en tech contact is een bedrijf</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_rechtsvorm</TD>
+		<TD class="a">Rechtsvorm van van tech contact (bijlage 2)</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_regnummer</TD>
+		<TD class="a">Registratienummer van bedrijfsnaam van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven en rechtsvorm is: <I>bv, bv i/o, cv, coop, eenmanszaak,<BR>owm, stichting, nv</I> of <I>vof</I></TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_voorletter</TD>
+		<TD class="a">Voornaam van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_tussenvoegsel</TD>
+		<TD class="a">Tussenvoegsel van <I>contact</I></TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_achternaam</TD>
+		<TD class="a">Achternaam van tech contact</TD>
+    <TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_straat</TD>
+		<TD class="a">Straat van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_huisnr</TD>
+		<TD class="a">Huisnummer van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_huisnrtoev</TD>
+		<TD class="a">Huisnummer toevoeging van tech contact</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_postcode</TD>
+		<TD class="a">Postcode van van tech contact</TD>
+    <TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_plaats</TD>
+		<TD class="a">Plaats van tech contact</TD>
+    <TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_land</TD>
+		<TD class="a">Landcode (bijlage 3) van tech contact</TD>
+    <TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_tel</TD>
+		<TD class="a">Telefoonnummer van tech contact (zonder landcode)</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_email</TD>
+		<TD class="a">Emailadres van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3"><I><B>Wijzig technisch contact .be / .eu domeinnaam</B></I><BR><BR></TD>
+	</TR>
+  <TR>
+		<TD class="a"><I>tech</I>_id</TD>
+		<TD class="a">ContactID van het tech contact</TD>
+		<TD class="a">Ja, als tech_bedrijfsnaam ~ tech_email niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_bedrijfsnaam</TD>
+		<TD class="a">Bedrijfsnaam van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven en tech contact is een bedrijf</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_rechtsvorm</TD>
+		<TD class="a">Rechtsvorm van van tech contact (bijlage 2)</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_regnummer</TD>
+		<TD class="a">Registratienummer van bedrijfsnaam van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven en rechtsvorm is: <I>anders, bv, nv</I> of <I>vof</I></TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_voorletter</TD>
+		<TD class="a">Voornaam van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_tussenvoegsel</TD>
+		<TD class="a">Tussenvoegsel van <I>contact</I></TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_achternaam</TD>
+		<TD class="a">Achternaam van tech contact</TD>
+    <TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_straat</TD>
+		<TD class="a">Straat van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_huisnr</TD>
+		<TD class="a">Huisnummer van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_huisnrtoev</TD>
+		<TD class="a">Huisnummer toevoeging van tech contact</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_postcode</TD>
+		<TD class="a">Postcode van van tech contact</TD>
+    <TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_plaats</TD>
+		<TD class="a">Plaats van tech contact</TD>
+    <TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+
+	<TR>
+		<TD class="a">tech_land</TD>
+		<TD class="a">Landcode (bijlage 3) van tech contact</TD>
+    <TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_tel</TD>
+		<TD class="a">Telefoonnummer van tech contact (zonder landcode)</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a">tech_email</TD>
+		<TD class="a">Emailadres van tech contact</TD>
+		<TD class="a">Ja, als tech_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3"><I><B>Wijzig contacten overige domeinnamen</B></I><BR><BR></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_id</TD>
+		<TD class="a">contactID van <I>contact</I></TD>
+		<TD class="a">Ja, als <I>contact</I>_bedrijfsnaam ~ <I>contact</I>_email niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_bedrijfsnaam</TD>
+		<TD class="a">Bedrijfsnaam van <I>contact</I></TD>
+		<TD class="a">Ja, als <I>contact</I>_id niet is opgegeven en <I>contact</I> is een bedrijf</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_rechtsvorm</TD>
+		<TD class="a">Rechtsvorm van <I>contact</I> (bijlage 2)</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_regnummer</TD>
+		<TD class="a">Registratienummer van bedrijfsnaam van <I>contact</I></TD>
+		<TD class="a">Ja, als <I>contact</I>_id niet is opgegeven en rechtsvorm is: <I>anders, bv, nv</I> of <I>vof</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_voorletter</TD>
+		<TD class="a">Voornaam  van <I>contact</I></TD>
+		<TD class="a">Ja, als <I>contact</I>_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_tussenvoegsel</TD>
+		<TD class="a">Tussenvoegsel van <I>contact</I></TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_achternaam</TD>
+		<TD class="a">Achternaam van <I>contact</I></TD>
+    <TD class="a">Ja, als <I>contact</I>_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_straat</TD>
+		<TD class="a">Straat van <I>contact</I></TD>
+		<TD class="a">Ja, als <I>contact</I>_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_huisnr</TD>
+		<TD class="a">Huisnummer van <I>contact</I></TD>
+		<TD class="a">Ja, als <I>contact</I>_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_huisnrtoev</TD>
+		<TD class="a">Huisnummer toevoeging van <I>contact</I></TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_postcode</TD>
+		<TD class="a">Postcode van <I>contact</I></TD>
+    <TD class="a">Ja, als <I>contact</I>_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_plaats</TD>
+		<TD class="a">Plaats van <I>contact</I></TD>
+    <TD class="a">Ja, als <I>contact</I>_id niet is opgegeven</TD>
+	</TR>
+
+	<TR>
+		<TD class="a"><I>contact</I>_land</TD>
+		<TD class="a">Landcode (bijlage 3) van <I>contact</I></TD>
+    <TD class="a">Ja, als <I>contact</I>_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_tel</TD>
+		<TD class="a">Telefoonnummer van <I>contact</I> (zonder landcode)</TD>
+		<TD class="a">Ja, als <I>contact</I>_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_email</TD>
+		<TD class="a">Emailadres van <I>contact</I></TD>
+		<TD class="a">Ja, als <I>contact</I>_id niet is opgegeven</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">Vervang <I>contact</I> door: <I>registrant,admin,tech en bill</I><BR></TD>
+	</TR>
+  <TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3"><I><B>Aanvullende parameters .ES domeinnamen</B></I><BR><BR></TD>
+	</TR>
+	<TR>
+		<TD class="a">tld_es_admin_type_id</TD>
+		<TD class="a">Type identificatie admin contact</TD>
+		<TD class="a">Ja, mogelijke waarden: 0=Anders, 1=DNI/NIF, 2=NIE</TD>
+	</TR>
+	<TR>
+		<TD class="a">tld_es_admin_idnum</TD>
+		<TD class="a">Identificatienummer admin contact (IDkaart/paspoort nummer)</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">tld_es_tech_type_id</TD>
+		<TD class="a">Type identificatie tech contact</TD>
+		<TD class="a">Ja, mogelijke waarden: 0=Anders, 1=DNI/NIF, 2=NIE</TD>
+	</TR>
+	<TR>
+		<TD class="a">tld_es_tech_idnum</TD>
+		<TD class="a">Identificatienummer tech contact (IDkaart/paspoort nummer)</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">tld_es_bill_type_id</TD>
+		<TD class="a">Type identificatie billing contact</TD>
+		<TD class="a">Ja, mogelijke waarden: 0=Anders, 1=DNI/NIF, 2=NIE</TD>
+	</TR>
+	<TR>
+		<TD class="a">tld_es_bill_idnum</TD>
+		<TD class="a">Identificatienummer billing contact (IDkaart/paspoort nummer)</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+</TABLE>
+
+<BR><BR>
+<B>Uitvoer parameters</B><BR>
+<BR>
+
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="700">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="300">Waarde</TD>
+	</TR>
+	<TR>
+	  <TD class="a">errcount</TD>
+	  <TD class="a">0</TD>
+	</TR>
+	<TR>
+	  <TD class="a">done</TD>
+	  <TD class="a">true</TD>
+	</TR>
+</TABLE>
+
+<BR><BR>
+<B>Opmerkingen</B><BR>
+<BR>
+<TABLE>
+	<TR>
+		<TD>1.</TD>
+		<TD>Het is niet mogelijk de houder van een .nl/.be of .eu domeinnaam met dit commando te wijzigen. Gebruik hiervoor het command <I>domain_trade</I></TD>
+	</TR>
+</TABLE>
+
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Voorbeeld: tld_get_details</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Voorbeeld: <I>tld_get_details</I></SPAN>
+<BR><BR>
+<B>Voorbeeld 1</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command", "tld_get_details"  );
+ $mdr->addParam( "tld",     "nl"               );
+
+ $mdr->DoTransaction();
+
+  if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK&lt;BR>";
+  print "&lt;TABLE>";
+  print "&lt;TR>&lt;TD>Prijs voor registratie:&lt;/TD>                     &lt;TD>" . $mdr->Values[ "prijs_registratie" ]      . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Munteenheid van prijs voor registratie:&lt;/TD>     &lt;TD>" . $mdr->Values[ "prijs_registratie_munt" ] . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Prijs voor verhuizing:&lt;/TD>                      &lt;TD>" . $mdr->Values[ "prijs_verhuizing" ]       . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Munteenheid van prijs voor verhuizing:&lt;/TD>      &lt;TD>" . $mdr->Values[ "prijs_registratie_munt" ] . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Prijs voor verlenging:&lt;/TD>                      &lt;TD>" . $mdr->Values[ "prijs_verlenging" ]       . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Munteenheid van prijs voor verlenging:&lt;/TD>      &lt;TD>" . $mdr->Values[ "prijs_verlenging_munt" ]  . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Wisselkoers voor munteenheid:&lt;/TD>               &lt;TD>" . $mdr->Values[ "munt_wisselkoers" ]       . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Minimale lengte domeinnaam:&lt;/TD>                 &lt;TD>" . $mdr->Values[ "lengte_min" ]             . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Maximale lengte domeinnaam:&lt;/TD>                 &lt;TD>" . $mdr->Values[ "lengte_max" ]             . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Minimale registratieduur:&lt;/TD>                   &lt;TD>" . $mdr->Values[ "jaar_min" ]               . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Maximale registratieduur:&lt;/TD>                   &lt;TD>" . $mdr->Values[ "jaar_max" ]               . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Extensie beschikbaar voor registratie:&lt;/TD>      &lt;TD>" . $mdr->Values[ "registreren" ]            . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Extensie beschikbaar voor verhuizing:&lt;/TD>       &lt;TD>" . $mdr->Values[ "verhuizen" ]              . "&lt;/TD>&lt;/TR>";
+  print "&lt;/TABLE>";
+ }
+</PRE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

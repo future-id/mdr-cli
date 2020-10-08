@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Command: domain_get_details</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Command: <I>domain_get_details</I></SPAN>
+<BR><BR>
+<B>Omschrijving</B><BR>
+<BR>
+Toon de details van een domeinnaam<BR>
+
+<BR>
+
+<B>Invoer parameters</B><BR>
+<BR>
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="900">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="350">Waarde</TD>
+	  <TD class="aHead" width="350">Verplicht</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">user</TD>
+		<TD class="a">Username API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">pass</TD>
+		<TD class="a">Wachtwoord API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">authtype</TD>
+		<TD class="a">Wachtwoord wordt verzonden in plaintext/md5<BR> waarden: plain/md5</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">domein</TD>
+		<TD class="a">Domeinnaam</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">tld</TD>
+		<TD class="a">TLD (extensie) van domeinnaam</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+</TABLE>
+
+<BR><BR>
+<B>Uitvoer parameters</B><BR>
+<BR>
+
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="700">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="300">Waarde</TD>
+	</TR>
+	<TR>
+	  <TD class="a"><I>contact</I>_id</TD>
+    <TD class="a">contactID van <I>contact</I></TD>
+
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_bedrijfsnaam</TD>
+		<TD class="a">Bedrijfsnaam van <I>contact</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_rechtsvorm</TD>
+		<TD class="a">Rechtsvorm van <I>contact</I> (bijlage 2)</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_regnummer</TD>
+		<TD class="a">Registratienummer van bedrijfsnaam van <I>contact</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_voorletter</TD>
+		<TD class="a">Voornaam  van <I>contact</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_tussenvoegsel</TD>
+		<TD class="a">Tussenvoegsel van <I>contact</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_achternaam</TD>
+		<TD class="a">Achternaam van <I>contact</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_straat</TD>
+		<TD class="a">Straat van <I>contact</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_huisnr</TD>
+		<TD class="a">Huisnummer van <I>contact</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_huisnrtoev</TD>
+		<TD class="a">Huisnummer toevoeging van <I>contact</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_postcode</TD>
+		<TD class="a">Postcode van <I>contact</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_plaats</TD>
+		<TD class="a">Plaats van <I>contact</I></TD>
+	</TR>
+
+	<TR>
+		<TD class="a"><I>contact</I>_land</TD>
+		<TD class="a">Landcode (bijlage 3) van <I>contact</I></TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_tel</TD>
+		<TD class="a">Telefoonnummer van <I>contact</I> (zonder landcode)</TD>
+	</TR>
+	<TR>
+		<TD class="a"><I>contact</I>_email</TD>
+		<TD class="a">Emailadres van <I>contact</I></TD>
+	</TR>
+	<TR>
+	  <TD class="a" colspan="2"><I>contact wordt vervangen door: registrant,admin,tech en bill</TD>
+	</TR>
+	<TR>
+	  <TD class="a" colspan="2">&nbsp;</TD>
+	</TR>
+	<TR>
+	  <TD class="a">ns_id</TD>
+	  <TD class="a">NameserverID van nameservers</TD>
+	</TR>
+	<TR>
+	  <TD class="a">ns1</TD>
+	  <TD class="a">ns1</TD>
+	</TR>
+	<TR>
+	  <TD class="a">ns2</TD>
+	  <TD class="a">ns2</TD>
+	</TR>
+	<TR>
+	  <TD class="a">ns3</TD>
+	  <TD class="a">ns3</TD>
+	</TR>
+	<TR>
+	  <TD class="a">ns4</TD>
+	  <TD class="a">ns5</TD>
+	</TR>
+	<TR>
+	  <TD class="a">ns5</TD>
+	  <TD class="a">ns5</TD>
+	</TR>
+	<TR>
+	  <TD class="a">ns6</TD>
+	  <TD class="a">ns6</TD>
+	</TR>
+	<TR>
+	  <TD class="a">ns7</TD>
+	  <TD class="a">ns7</TD>
+	</TR>
+	<TR>
+	  <TD class="a">gebruik_dns</TD>
+	  <TD class="a">Nameservers van MijnDomeinReseller, waarden: true/false</TD>
+	</TR>
+
+	<TR>
+	  <TD class="a">dns_template</TD>
+	  <TD class="a">Naam van DNS template wanneer gebruik_dns = true</TD>
+	</TR>
+	<TR>
+	  <TD class="a" colspan="2">&nbsp;</TD>
+	</TR>
+	<TR>
+	  <TD class="a" colspan="2">&nbsp;</TD>
+	</TR>
+	<TR>
+	  <TD class="a">autorenew</TD>
+	  <TD class="a">Autorenew ingeschakeld, waarden: true/false of leeg wanneer autorenew niet beschikbaar is</TD>
+	</TR>
+	<TR>
+	  <TD class="a">lock</TD>
+	  <TD class="a">Domeinlock ingeschakeld, waarden: true/false of leeg wanneer een domeinlock niet beschikbaar is</TD>
+	</TR>
+	<TR>
+	  <TD class="a">verloopdatum</TD>
+	  <TD class="a">Verloopdatum van domeinnaam in formaat: dd-mm-jjjj</TD>
+	</TR>
+	<TR>
+	  <TD class="a">authkey</TD>
+	  <TD class="a">De authkey/token van de domeinnaam</TD>
+	</TR>
+	<TR>
+	  <TD class="a">status</TD>
+	  <TD class="a">Status van de domeinnaam</TD>
+	</TR>
+	<TR>
+	  <TD class="a" colspan="2">&nbsp;</TD>
+	</TR>
+	<TR>
+	  <TD class="a">errcount</TD>
+	  <TD class="a">0</TD>
+	</TR>
+	<TR>
+	  <TD class="a">done</TD>
+	  <TD class="a">true</TD>
+	</TR>
+
+</TABLE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

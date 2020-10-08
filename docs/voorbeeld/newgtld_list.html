@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Voorbeeld: newgtld_list</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Voorbeeld: <I>newgltd_list</I></SPAN>
+<BR><BR>
+<B>Voorbeeld 1</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command", "newgtld_list" );
+
+ $mdr->DoTransaction();
+
+ if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK&lt;BR>";
+
+  print "&lt;TABLE>";
+  for($i=0;$i<$mdr->Values["newgtldcount"];$i++) {
+    if($mdr->Values["sunrise_start[$i]"] == "") {
+      $sunrise = "<i>onbekend</i>";
+    }
+    else {
+      $sunrise = $mdr->Values["sunrise_end[$i]"] == "" ? $mdr->Values["sunrise_start[$i]"] : $mdr->Values["sunrise_start[$i]"] . " / " . $mdr->Values["sunrise_end[$i]"];
+    }
+
+    $landrush = $mdr->Values["landrush[$i]"] == ""  ? "<i>onbekend</i>" : $mdr->Values["landrush[$i]"];
+    $golive   = $mdr->Values["golive[$i]"]        == ""  ? "<i>onbekend</i>" : $mdr->Values["golive[$i]"];
+    $islive   = $mdr->Values["is_live[$i]"]       == "1" ? "Registreer nu  " : "Nog niet live";
+
+    print "&lt;TR>";
+    print "&lt;TD>" . $mdr->Values[ "tld[$i]" ]. "&lt;/TD>";
+    print "&lt;TD>" . $sunrise                 . "&lt;/TD>";
+    print "&lt;TD>" . $landrush                . "&lt;/TD>";
+    print "&lt;TD>" . $golive                  . "&lt;/TD>";
+    print "&lt;TD>" . $islive                  . "&lt;/TD>";
+    print "&lt;/TR>";
+  }
+  print "&lt;/TABLE>";
+
+  print "&lt;/TABLE>";
+ }
+</PRE>
+
+
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

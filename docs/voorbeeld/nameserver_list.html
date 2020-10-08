@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Voorbeeld: nameserver_list</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Voorbeeld: <I>nameserver_list</I></SPAN>
+<BR><BR>
+<B>Voorbeeld 1</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command", "nameserver_list" );
+
+ $mdr->addParam( "sort",    "ns1"             );
+ $mdr->addParam( "order",   "1"               );
+
+ $mdr->DoTransaction();
+
+  if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK&lt;BR>";
+  print "&lt;TABLE>";
+   for($i=0;$i<=$mdr->Values[ "nscount" ];$i++) {
+    print "&lt;TR>";
+    print "&lt;TD>" . $mdr->Values[ "ns_id[$i]" ]  . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns1[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns2[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns3[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns4[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns5[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns6[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns7[$i]" ]    . "&lt;/TD>";
+    print "&lt;/TR>";
+   }
+  print "&lt;/TABLE>";
+ }
+</PRE>
+
+<BR>
+
+<B>Voorbeeld 2</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command", "nameserver_list" );
+
+ $mdr->addParam( "sort",    "ns2"             );
+
+ $mdr->DoTransaction();
+
+  if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK&lt;BR>";
+  print "&lt;TABLE>";
+   for($i=0;$i<=$mdr->Values[ "nscount" ];$i++) {
+    print "&lt;TR>";
+    print "&lt;TD>" . $mdr->Values[ "ns_id[$i]" ]  . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns1[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns2[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns3[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns4[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns5[$i]" ]    . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values[ "ns6[$i]" ]    . "&lt;/TD>";
+		print "&lt;TD>" . $mdr->Values[ "ns7[$i]" ]    . "&lt;/TD>";
+    print "&lt;/TR>";
+   }
+  print "&lt;/TABLE>";
+ }
+</PRE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

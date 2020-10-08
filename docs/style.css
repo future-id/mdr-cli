@@ -1,0 +1,7 @@
+BODY,A,TD     { margin:10px;font-size: 11px; font-family: verdana; text-decoration:none; color:#000000; }
+.txtHead      { font-family:arial; font-size:16px; color:#8DAF01; font-weight: bold; }
+TD.a          { font-size: 11px; font-family: verdana; border: 1px solid #000000; padding-left:5px; }
+TD.aHead      { font-size: 11px; font-family: verdana; border: 1px solid #000000; padding-left:5px; background-color:#B5D609; color:#ffffff; font-weight:bold; }
+table.aTable  { border-collapse:collapse; }
+a.AHover      { text-decoration:underline }
+a.ANormal     { text-decoration:none }

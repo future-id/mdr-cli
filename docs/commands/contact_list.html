@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Command: contacts_list</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Command: <I>contact_list</I></SPAN>
+<BR><BR>
+<B>Omschrijving</B><BR>
+<BR>
+Toon een overzicht van de contacts uit het account<BR>
+
+<BR>
+
+<B>Invoer parameters</B><BR>
+<BR>
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="900">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="350">Waarde</TD>
+	  <TD class="aHead" width="350">Verplicht</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">user</TD>
+		<TD class="a">Username API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">pass</TD>
+		<TD class="a">Wachtwoord API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">authtype</TD>
+		<TD class="a">Wachtwoord wordt verzonden in plaintext/md5<BR> waarden: plain/md5</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">sort</TD>
+		<TD class="a">Sorteren contacts, waarden: bedrijfsnaam/voornaam/tussenvoegsel/achternaam/email/tel</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">order</TD>
+		<TD class="a">Sorteer contact oplopend/aflopend, waarden: 0 voor oplopend, 1 voor aflopend</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+</TABLE>
+
+<BR><BR>
+<B>Uitvoer parameters</B><BR>
+<BR>
+
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="700">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="300">Waarde</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contactcount</TD>
+	  <TD class="a">Numerieke waarden van het aantal contacts</TD>
+	</TR>
+	<TR>
+	  <TD class="a" colspan="2">&nbsp;</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_id[<I>n</I>]</TD>
+	  <TD class="a">ContactID</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_bedrijfsnaam[<I>n</I>]</TD>
+	  <TD class="a">Bedrijfsnaam van contact</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_voorletter[<I>n</I>]</TD>
+	  <TD class="a">Voorletter van contact</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_tussenvoegsel[<I>n</I>]</TD>
+	  <TD class="a">Tussenvoegsel van contact</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_achternaam[<I>n</I>]</TD>
+	  <TD class="a">Achternaam van contact</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_straat[<I>n</I>]</TD>
+	  <TD class="a">Straat van contact</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_huisnr[<I>n</I>]</TD>
+	  <TD class="a">Huisnummer van contact</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_postcode[<I>n</I>]</TD>
+	  <TD class="a">Postcode van contact</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_plaats[<I>n</I>]</TD>
+	  <TD class="a">Plaats van contact</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_land[<I>n</I>]</TD>
+	  <TD class="a">Landcode (bijlage 3) van contact</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_email[<I>n</I>]</TD>
+	  <TD class="a">Emailadres van contact</TD>
+	</TR>
+	<TR>
+	  <TD class="a">contact_tel[<I>n</I>]</TD>
+	  <TD class="a">Telefoonnummer van contact</TD>
+	</TR>
+
+	<TR>
+	  <TD class="a" colspan="2"><I>n</I> wordt vervangen door een opeenlopend cijfer, beginnend bij 0, eindigt bij <I>contactcount</I></TD>
+	</TR>
+	<TR>
+	  <TD class="a" colspan="2">&nbsp;</TD>
+	</TR>
+	<TR>
+	  <TD class="a">errcount</TD>
+	  <TD class="a">0</TD>
+	</TR>
+	<TR>
+	  <TD class="a">done</TD>
+	  <TD class="a">true</TD>
+	</TR>
+</TABLE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

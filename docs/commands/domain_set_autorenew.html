@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Command: domain_set_autorenew</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Command: <I>domain_set_autorenew</I></SPAN>
+<BR><BR>
+<B>Omschrijving</B><BR>
+<BR>
+Schakel de autorenew in of uit<BR>
+
+<BR>
+
+<B>Invoer parameters</B><BR>
+<BR>
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="900">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="350">Waarde</TD>
+	  <TD class="aHead" width="350">Verplicht</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">user</TD>
+		<TD class="a">Username API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">pass</TD>
+		<TD class="a">Wachtwoord API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">authtype</TD>
+		<TD class="a">Wachtwoord wordt verzonden in plaintext/md5<BR> waarden: plain/md5</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">domein</TD>
+		<TD class="a">Domeinnaam</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">tld</TD>
+		<TD class="a">TLD (extensie) van domeinnaam</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">autorenew</TD>
+		<TD class="a">Autorenew instellen, waarden: true (inschakelen) / false(uitschakelen)</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">registrant_approve</TD>
+		<TD class="a">Toestemming van registrant voor opheffen domeinnaam (enkel bij .DE extensie), waarden: true (toestemming) / false (geen toestemming)</TD>
+		<TD class="a">Ja, als extensie is .DE en autorenew=false</TD>
+	</TR>
+
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+</TABLE>
+
+<BR><BR>
+<B>Uitvoer parameters</B><BR>
+<BR>
+
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="700">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="300">Waarde</TD>
+	</TR>
+	<TR>
+	  <TD class="a">errcount</TD>
+	  <TD class="a">0</TD>
+	</TR>
+	<TR>
+	  <TD class="a">done</TD>
+	  <TD class="a">true</TD>
+	</TR>
+</TABLE>
+
+
+<BR><BR>
+<B>Opmerkingen</B><BR>
+<BR>
+<TABLE>
+	<TR>
+		<TD valign="top">1.</TD>
+		<TD>Wanneer een .DE domeinnaam zonder toestemming van de houder wordt opgeheven dan wordt de domeinnaam naar de Denic transit gepusht.<BR>Zie voor meer informatie: <A href="https://transit.secure.denic.de/en/" target="_blank">https://transit.secure.denic.de/en/</A></TD>
+	</TR>
+</TABLE>
+
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

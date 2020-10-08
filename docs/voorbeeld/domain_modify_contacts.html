@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Voorbeeld: domain_modify_contacts</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Voorbeeld: <I>domain_modify_contacts</I></SPAN>
+<BR><BR>
+<B>Voorbeeld 1</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command",             "domain_modify_contacts"      );
+
+ $mdr->addParam( "domein",              "mijndomeinreseller"          );
+ $mdr->addParam( "tld",                 "nl"                          );
+
+ $mdr->addParam( "admin_bedrijfsnaam",  "Bedrijf BV"                  );
+ $mdr->addParam( "admin_voorletter",    "M"                           );
+ $mdr->addParam( "admin_tussenvoegsel", ""                            );
+ $mdr->addParam( "admin_achternaam",    "Bonsee"                      );
+ $mdr->addParam( "admin_straat",        "Helmondstraat"               );
+ $mdr->addParam( "admin_huisnr",        "19"                          );
+ $mdr->addParam( "admin_postcode",      "1324 WN"                     );
+ $mdr->addParam( "admin_plaats",        "Almere"                      );
+ $mdr->addParam( "admin_land",          "nl"                          );
+ $mdr->addParam( "admin_tel",           "0367851370"                  );
+ $mdr->addParam( "admin_email",         "info@mijndomeinreseller.nl"  );
+
+ $mdr->addParam( "tech_id",  "1047" );
+
+ $mdr->DoTransaction();
+
+ if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK&lt;BR>";
+ }
+</PRE>
+
+<BR>
+
+<B>Voorbeeld 2</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command",             "domain_modify_contacts"      );
+
+ $mdr->addParam( "domein",              "mijndomeinreseller"          );
+ $mdr->addParam( "tld",                 "com"                         );
+
+ $mdr->addParam( "registrant_id",       "1046"                        );
+
+ $mdr->addParam( "admin_bedrijfsnaam",  "Bedrijf BV"                  );
+ $mdr->addParam( "admin_voorletter",    "M"                           );
+ $mdr->addParam( "admin_tussenvoegsel", ""                            );
+ $mdr->addParam( "admin_achternaam",    "Bonsee"                      );
+ $mdr->addParam( "admin_straat",        "Helmondstraat"               );
+ $mdr->addParam( "admin_huisnr",        "19"                          );
+ $mdr->addParam( "admin_postcode",      "1324 WN"                     );
+ $mdr->addParam( "admin_plaats",        "Almere"                      );
+ $mdr->addParam( "admin_land",          "nl"                          );
+ $mdr->addParam( "admin_tel",           "0367851370"                  );
+ $mdr->addParam( "admin_email",         "info@mijndomeinreseller.nl"  );
+
+ $mdr->addParam( "tech_id",             "1047"                        );
+ $mdr->addParam( "bill_id",             "1047"                        );
+
+ $mdr->DoTransaction();
+
+  if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK";
+ }
+</PRE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Algemeen: werking</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Algemeen: <I>werking</I></SPAN>
+<BR><BR>
+Via de API voert u geautomatiseerd opdrachten uit vanuit uw eigen systeem. U stelt het gewenste verzoek samen en verzend deze naar MijnDomeinReseller. Vervolgens ontvangt u
+antwoord op uw verzoek.
+<BR><BR>
+
+<B>Een opdracht samenstellen</B><BR><BR>
+Opdrachten worden via een GET request aan de API verzonden. Zie het volgende voorbeeld voor een whois opdracht:<BR>
+<BR>
+command=whois<BR>
+user=username<BR>
+pass=password<BR>
+type=uitgebreid<BR>
+domein=mijndomeinreseller.nl<BR>
+<BR>
+Deze waarden worden als volgt verzonden naar de API:<BR>
+https://manager.mijndomeinreseller.nl/api/index.php?command=whois&user=username&pass=password&type=uitgebreid&domein=mijndomeinreseller.nl<BR>
+<BR>
+Het antwoord ziet er als volgt uit:<BR>
+<BR>
+domein=mijndomeinreseller.nl<BR>
+result=<I>whois data</I><BR>
+errcount=0<BR>
+done=true<BR>
+<BR>
+Het antwoord kunt u in uw eigen systeem verwerken.<BR>
+<BR>
+<B>PHP class</B><BR><BR>
+Voor een eenvoudige werking is een PHP class beschikbaar. Deze PHP class kunt u in uw eigen PHP script verwerken. De voorbeelden in deze html handleiding zijn gebaseerd op de PHP class.<BR>
+<BR>
+<B>Test omgeving</B><BR><BR>
+U kunt gebruik maken van de test omgeving om de aansluiting van uw systeem op de API te testen. Bij gebruik van de test omgeving worden mutaties aan domeinnamen niet doorgevoerd. U kunt de test omgeving aan/uit zetten in de domeinmanager.
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

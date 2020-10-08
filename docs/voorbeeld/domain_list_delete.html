@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Voorbeeld: domain_list_delete</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Voorbeeld: <I>domain_list</I></SPAN>
+<BR><BR>
+<B>Voorbeeld 1</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command", "domain_list_delete" );
+
+ $mdr->DoTransaction();
+
+ if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK&lt;BR>";
+  print "&lt;TABLE>";
+   for($i=0;$i<=$mdr->Values["domain_list_delete_count"];$i++) {
+    print "&lt;TR>";
+    print "&lt;TD>" . $mdr->Values["domein[$i]"]       . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values["tld[$i]"]          . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values["datum[$i]"]        . "&lt;/TD>";
+    print "&lt;TD>" . $mdr->Values["type[$i]"]         . "&lt;/TD>";
+    print "&lt;/TR>";
+   }
+  print "&lt;/TABLE>";
+ }
+</PRE>
+
+
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

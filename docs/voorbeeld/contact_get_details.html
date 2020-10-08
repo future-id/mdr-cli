@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Voorbeeld: contact_get_details</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Voorbeeld: <I>contact_get_details</I></SPAN>
+<BR><BR>
+<B>Voorbeeld 1</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command",    "contact_get_details"  );
+ $mdr->addParam( "contact_id", "MIJND-0001"  );
+
+ $mdr->DoTransaction();
+
+  if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK&lt;BR>";
+  print "&lt;TABLE>";
+  print "&lt;TR>&lt;TD>Bedrijf:&lt;/TD>               &lt;TD>" . $mdr->Values[ "bedrijfsnaam" ]  . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Rechtsvorm:&lt;/TD             &lt;TD>" . $mdr->Values[ "rechtsvorm" ]    . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Registratienummer:&lt;/TD>     &lt;TD>" . $mdr->Values[ "regnummer" ]     . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Voorletter:&lt;/TD>            &lt;TD>" . $mdr->Values[ "voorletter" ]    . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Tussenvoegsel:&lt;/TD>         &lt;TD>" . $mdr->Values[ "tussenvoegsel" ] . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Achternaam:&lt;/TD>            &lt;TD>" . $mdr->Values[ "achternaam" ]    . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Straat:&lt;/TD>                &lt;TD>" . $mdr->Values[ "straat" ]        . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Huisnr:&lt;/TD>                &lt;TD>" . $mdr->Values[ "huisnr" ]        . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Huisnummer toevoeging:&lt;/TD> &lt;TD>" . $mdr->Values[ "huisnrtoev" ]    . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Postcode:&lt;/TD>              &lt;TD>" . $mdr->Values[ "postcode" ]      . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Plaats:&lt;/TD>                &lt;TD>" . $mdr->Values[ "plaats" ]        . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Landcode:&lt;/TD>              &lt;TD>" . $mdr->Values[ "land" ]          . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Telefoon:&lt;/TD>              &lt;TD>" . $mdr->Values[ "tel" ]           . "&lt;/TD>&lt;/TR>";
+  print "&lt;TR>&lt;TD>Email:&lt;/TD>                 &lt;TD>" . $mdr->Values[ "email" ]         . "&lt;/TD>&lt;/TR>";
+
+  print "&lt;/TABLE>";
+ }
+</PRE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

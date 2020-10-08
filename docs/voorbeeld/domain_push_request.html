@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Voorbeeld: domain_push_request</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Voorbeeld: <I>domain_push_request</I></SPAN>
+<BR><BR>
+<B>Voorbeeld 1</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command",  "domain_push_request"  );
+
+ $mdr->addParam( "domein",   "mijndomeinreseller"   );
+ $mdr->addParam( "tld",      "nl"                   );
+
+ $mdr->addParam( "authkey",  "ameu5mqn6jei"         );
+
+ $mdr->DoTransaction();
+
+ if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK";
+ }
+</PRE>
+
+<BR>
+
+<B>Voorbeeld 2</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command",     "domain_transfer"             );
+
+ $mdr->addParam( "domein",      "mijndomeinreseller"          );
+ $mdr->addParam( "tld",         "com"                         );
+
+ $mdr->addParam( "admin_id", "1046"                 );
+ $mdr->addParam( "tech_id",  "1047"                 );
+ $mdr->addParam( "bill_id",  "1046"                 );
+
+ $mdr->addParam( "ns1",      "ns1.mijndnsserver.nl" );
+ $mdr->addParam( "ns2",      "ns2.mijndnsserver.nl" );
+ $mdr->addParam( "ns3",      "ns3.mijndnsserver.nl" );
+
+
+ $mdr->addParam( "lock",        "true"                        );
+ $mdr->addParam( "autorenew",   "true"                        );
+ $mdr->addParam( "authkey",     "12345"                       );
+
+ $mdr->DoTransaction();
+
+ if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     if($mdr->Values[ "errno".$i ] == "010003") {
+       $mdrpush = new MDR_api();
+
+       $mdrpush->addParam( "command",  "domain_push_request"  );
+
+       $mdrpush->addParam( "domein",   "mijndomeinreseller"   );
+       $mdrpush->addParam( "tld",      "nl"                   );
+
+       $mdrpush->addParam( "authkey",  "12345"                );
+
+       $mdrpush->DoTransaction();
+
+       if( $mdrpush->Values[ "errcount" ] > 0 ) {
+         print "Fout opgetreden:&lt;BR>";
+
+         for( $i=1;$i<=$mdrpush->Values[ "errcount" ];$i++ ) {
+           print $mdrpush->Values[ "errnotxt".$i ] . " (code: " . $mdrpush->Values[ "errno".$i ] . ")&lt;BR>";
+         }
+       }
+       else {
+         print "OK";
+       }
+     }
+     else {
+       print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+     }
+   }
+
+ }
+ else {
+  print "OK";
+ }
+</PRE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

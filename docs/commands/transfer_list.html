@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Command: transfer_list</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Command: <I>transfer_list</I></SPAN>
+<BR><BR>
+<B>Omschrijving</B><BR>
+<BR>
+Toon een overzicht van de domeinverhuizingen uit het account<BR>
+
+<BR>
+
+<B>Invoer parameters</B><BR>
+<BR>
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="900">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="350">Waarde</TD>
+	  <TD class="aHead" width="350">Verplicht</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">user</TD>
+		<TD class="a">Username API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">pass</TD>
+		<TD class="a">Wachtwoord API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">authtype</TD>
+		<TD class="a">Wachtwoord wordt verzonden in plaintext/md5<BR> waarden: plain/md5</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">status</TD>
+		<TD class="a">Toon enkel verhuizingen met de status (tot maximaal 30 dagen terug), waarden: cancelled, pending, transferred</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">domein</TD>
+		<TD class="a">Toon enkel verhuizingen van de opgegeven domeinnaam (zonder TLD) (tot maximaal 30 dagen terug)</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+	<TR>
+		<TD class="a">tld</TD>
+		<TD class="a">Toon enkel verhuizingen van domeinnamen met de opgegeven TLD  (tot maximaal 30 dagen terug)</TD>
+		<TD class="a">Nee</TD>
+	</TR>
+
+</TABLE>
+
+<BR><BR>
+<B>Uitvoer parameters</B><BR>
+<BR>
+
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="700">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="300">Waarde</TD>
+	</TR>
+	<TR>
+	  <TD class="a">transfercount</TD>
+	  <TD class="a">Numerieke waarden van het aantal verhuizingen</TD>
+	</TR>
+	<TR>
+	  <TD class="a" colspan="2">&nbsp;</TD>
+	</TR>
+	<TR>
+	  <TD class="a">transfer_id[<I>n</I>]</TD>
+	  <TD class="a">TransferID</TD>
+	</TR>
+	<TR>
+	  <TD class="a">domein[<I>n</I>]</TD>
+	  <TD class="a">Domeinnaam</TD>
+	</TR>
+	<TR>
+	  <TD class="a">status[<I>n</I>]</TD>
+	  <TD class="a">Status van de verhuizing</TD>
+	</TR>
+	<TR>
+	  <TD class="a">status_melding[<I>n</I>]</TD>
+	  <TD class="a">Statusmelding van de verhuizing</TD>
+	</TR>
+	<TR>
+	  <TD class="a">datum_invoer[<I>n</I>]</TD>
+	  <TD class="a">Datum waarop de verhuizing werd aangevraagd</TD>
+	</TR>
+	<TR>
+	  <TD class="a">datum_update[<I>n</I>]</TD>
+	  <TD class="a">Datum waarop de verhuizing voor het laatst werd bijgewerkt</TD>
+	</TR>
+	<TR>
+	  <TD class="a" colspan="2"><I>n</I> wordt vervangen door een opeenlopend cijfer, beginnend bij 0, eindigt bij <I>transfercount</I></TD>
+	</TR>
+	<TR>
+	  <TD class="a" colspan="2">&nbsp;</TD>
+	</TR>
+	<TR>
+	  <TD class="a">errcount</TD>
+	  <TD class="a">0</TD>
+	</TR>
+	<TR>
+	  <TD class="a">done</TD>
+	  <TD class="a">true</TD>
+	</TR>
+</TABLE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

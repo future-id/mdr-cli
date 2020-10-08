@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Voorbeeld: domain_trade</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Voorbeeld: <I>domain_trade</I></SPAN>
+<BR><BR>
+<B>Voorbeeld 1</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command",                      "domain_trade"               );
+
+ $mdr->addParam( "domein",                       "mijndomeinreseller"         );
+ $mdr->addParam( "tld",                          "nl"                         );
+
+ $mdr->addParam( "registrant_bedrijfsnaam",      "Bedrijf BV"                 );
+ $mdr->addParam( "registrant_rechtsvorm",        "BV"                         );
+ $mdr->addParam( "registrant_registratienummer", "12345"                      );
+ $mdr->addParam( "registrant_voorletter",        "M"                          );
+ $mdr->addParam( "registrant_tussenvoegsel",     ""                           );
+ $mdr->addParam( "registrant_achternaam",        "Bonsee"                     );
+ $mdr->addParam( "registrant_straat",            "Helmondstraat"              );
+ $mdr->addParam( "registrant_huisnr",            "19"                         );
+ $mdr->addParam( "registrant_postcode",          "1324 WN"                    );
+ $mdr->addParam( "registrant_plaats",            "Almere"                     );
+ $mdr->addParam( "registrant_land",              "nl"                         );
+ $mdr->addParam( "registrant_tel",               "0367851370"                 );
+ $mdr->addParam( "registrant_email",             "info@mijndomeinreseller.nl" );
+
+ $mdr->addParam( "admin_id",                     "1046"                       );
+ $mdr->addParam( "tech_id",                      "1047"                       );
+
+ $mdr->DoTransaction();
+
+ if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK&lt;BR>";
+ }
+</PRE>
+
+<BR>
+
+<B>Voorbeeld 2</B><BR>
+<BR>
+
+<PRE>
+ $mdr = new MDR_api();
+
+ $mdr->addParam( "command",       "domain_trade"        );
+
+ $mdr->addParam( "domein",        "mijndomeinreseller " );
+ $mdr->addParam( "tld",           "be"                  );
+
+ $mdr->addParam( "registrant_id", "1046"                );
+ $mdr->addParam( "tech_id",       "1047"                );
+
+ $mdr->addParam( "ns_id",         "3001"                );
+
+ $mdr->addParam( "authkey",       "101-501-443-320-423" );
+
+ $mdr->DoTransaction();
+
+ if( $mdr->Values[ "errcount" ] > 0 ) {
+   print "Fout opgetreden:&lt;BR>";
+
+   for( $i=1;$i<=$mdr->Values[ "errcount" ];$i++ ) {
+     print $mdr->Values[ "errnotxt".$i ] . " (code: " . $mdr->Values[ "errno".$i ] . ")&lt;BR>";
+   }
+
+ }
+ else {
+  print "OK";
+ }
+</PRE>
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+

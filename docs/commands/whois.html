@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <TITLE>Command: whois</TITLE>
+	<LINK href="../style.css" rel="stylesheet" type="text/css">
+</HEAD>
+
+<BODY>
+<SPAN class="txtHead">Command: <I>whois</I></SPAN>
+<BR><BR>
+<B>Omschrijving</B><BR>
+<BR>
+whois informatie opvragen van één of meerdere domeinnamen<BR>
+
+<BR>
+
+<B>Invoer parameters</B><BR>
+<BR>
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="900">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="350">Waarde</TD>
+	  <TD class="aHead" width="350">Verplicht</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">user</TD>
+		<TD class="a">Username API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">pass</TD>
+		<TD class="a">Wachtwoord API</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a">authtype</TD>
+		<TD class="a">Wachtwoord wordt verzonden in plaintext/md5<BR> waarden: plain/md5</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a">type</TD>
+		<TD class="a">Type whois query, waarden: uitgebreid/bulk/intern</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3"><I><B>Type: uitgebreid/intern</B><I><BR><BR></TD>
+	</TR>
+	<TR>
+		<TD class="a">domein</TD>
+		<TD class="a">Domeinnaam</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3"><I><B>Type: bulk</B><I><BR><BR></TD>
+	</TR>
+	<TR>
+		<TD class="a">domeinen</TD>
+		<TD class="a">Domeinlijst gescheiden door puntkomma ";"</TD>
+		<TD class="a">Ja</TD>
+	</TR>
+
+</TABLE>
+
+<BR><BR>
+<B>Uitvoer parameters</B><BR>
+<BR>
+
+<TABLE cellspacing="0" cellpadding="0" class="aTable" width="700">
+	<TR>
+	  <TD class="aHead" width="200">Parameter</TD>
+	  <TD class="aHead" width="300">Waarde</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3"><I><B>Type: uitgebreid</B><I><BR><BR></TD>
+	</TR>
+	<TR>
+	  <TD class="a">domein</TD>
+	  <TD class="a">Domeinnaam</TD>
+	</TR>
+	<TR>
+	  <TD class="a">result</TD>
+	  <TD class="a">Whois data</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3"><I><B>Type: intern</B><I><BR><BR></TD>
+	</TR>
+	<TR>
+	  <TD class="a">domein</TD>
+	  <TD class="a">Domeinnaam</TD>
+	</TR>
+	<TR>
+	  <TD class="a">reseller_bedrijf</TD>
+	  <TD class="a">Bedrijfsnaam van reseller</TD>
+	</TR>
+	<TR>
+	  <TD class="a">reseller_naam</TD>
+	  <TD class="a">Contactpersoon van reseller</TD>
+	</TR>
+	<TR>
+	  <TD class="a">reseller_adres</TD>
+	  <TD class="a">Adres van reseller</TD>
+	</TR>
+	<TR>
+	  <TD class="a">reseller_postcode</TD>
+	  <TD class="a">Postcode van reseller</TD>
+	</TR>
+	<TR>
+	  <TD class="a">reseller_plaats</TD>
+	  <TD class="a">Plaats van reseller</TD>
+	</TR>
+	<TR>
+	  <TD class="a">reseller_land</TD>
+	  <TD class="a">Land van reseller</TD>
+	</TR>
+	<TR>
+	  <TD class="a">reseller_tel</TD>
+	  <TD class="a">Telefoonnummer van reseller</TD>
+	</TR>
+	<TR>
+	  <TD class="a">reseller_fax</TD>
+	  <TD class="a">Faxnummer van reseller</TD>
+	</TR>
+	<TR>
+	  <TD class="a">reseller_email</TD>
+	  <TD class="a">Emailadres van reseller</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3"><I><B>Type: bulk</B><I><BR><BR></TD>
+	</TR>
+	<TR>
+	  <TD class="a">domeincount</TD>
+	  <TD class="a">Nummerieke waarde van het aantal domeinnamen</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+	  <TD class="a">domein[<I>n</I>]</TD>
+	  <TD class="a">Domeinnaam</TD>
+	</TR>
+	<TR>
+	  <TD class="a">status[<I>n</I>]</TD>
+	  <TD class="a">Status van de domeinnaam, waarden: vrij = 1, bezet = 0</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3"><I>n</I> wordt vervangen door een opeenlopend cijfer, beginnend bij 1, eindigd bij domaincount</TD>
+	</TR>
+	<TR>
+		<TD class="a" colspan="3">&nbsp;</TD>
+	</TR>
+	<TR>
+	  <TD class="a">errcount</TD>
+	  <TD class="a">0</TD>
+	</TR>
+	<TR>
+	  <TD class="a">done</TD>
+	  <TD class="a">true</TD>
+	</TR>
+
+
+</BODY>
+
+
+</HTML>
+
+
+
+
+
+
