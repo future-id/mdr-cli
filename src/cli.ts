@@ -28,10 +28,13 @@ async function main(): Promise<void> {
         process.exit(0);
     }
 
-    // Validate config synchronious
-    const toml = oldfs.readFileSync(CONFIG_FILE, "utf-8");
-    const config = TOML.parse(toml);
-    validateConfig(config);
+    const test = process.argv[2];
+    if (test !== "set") {
+        // Validate config synchronious
+        const toml = oldfs.readFileSync(CONFIG_FILE, "utf-8");
+        const config = TOML.parse(toml);
+        validateConfig(config);
+    }
 
     // When in development and we use ts-node make sure the commands loaded use .ts extension
     if (process.env.NODE_ENV === "development" && __filename.endsWith(".ts")) {
