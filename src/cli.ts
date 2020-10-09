@@ -23,7 +23,7 @@ async function main(): Promise<void> {
         await fs.access(CONFIG_FILE, constants.F_OK | constants.W_OK | constants.R_OK);
     } catch (e) {
         await fs.writeFile(CONFIG_FILE, defaults, "utf-8");
-        logger.info(`Config file created at ${CONFIG_FILE}. Please edit with a username and password before continuing!`);
+        logger.info(`Config file created at ${CONFIG_FILE}.\nPlease edit with a username and password before continuing!`);
         process.exit(0);
     }
 
