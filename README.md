@@ -3,7 +3,7 @@ cli to interact with the mijndomeinreseller api \
 MijnDomeinReseller docs: https://pepijn98.github.io/mdr-cli/
 
 # Installation
-`npm i -g mdr-cli` or `yarn add global mdr-cli`
+`npm i -g mdr-cli` or `yarn global add mdr-cli`
 
 # Setup
 Initial usage will create a config file under your OS's preferred path \
