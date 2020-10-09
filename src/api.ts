@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import urlcat from "urlcat";
 import axios, { AxiosResponse } from "axios";
-import { Config, getConfig, logger, spinner } from "./utils/Utils";
+import { Config, getConfig, logger, spinner, validateConfig } from "./utils/Utils";
 
 type ParsedData = Record<string, string>;
 type Query = Record<string, string>;
@@ -14,6 +14,7 @@ class Api {
 
     async init(): Promise<void> {
         this.config = await getConfig();
+        validateConfig(this.config);
         if (this.config.authType === "md5") {
             this.password = crypto.createHash("md5").update(this.config.password).digest("hex");
         } else {

@@ -40,8 +40,7 @@ export function checkType(type: string): AuthType {
 
 export async function getConfig(): Promise<Config> {
     const toml = await fs.readFile(CONFIG_FILE, "utf-8");
-    const config = await TOML.parse.async(toml);
-    return validateConfig(config);
+    return (await TOML.parse.async(toml)) as Config;
 }
 
 export function validateConfig(config: TOML.JsonMap): Config {
