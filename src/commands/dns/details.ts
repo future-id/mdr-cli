@@ -1,4 +1,3 @@
-// fiddev
 import Api from "../../api";
 import { spinner } from "../../utils/Utils";
 import { Command, Options, command, option, metadata } from "clime";

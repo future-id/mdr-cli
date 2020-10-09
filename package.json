@@ -1,6 +1,6 @@
 {
     "name": "mdr-cli",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "cli to interact with the mijndomeinreseller api",
     "main": "dist/cli.js",
     "license": "MIT",

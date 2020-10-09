@@ -1,9 +1,10 @@
 #! /usr/bin/env node
 
 import path from "path";
-import { constants, promises as fs } from "fs";
+import TOML from "@iarna/toml";
+import oldfs, { constants, promises as fs } from "fs";
 import { CLI, Shim } from "clime";
-import { CONFIG_DIR, CONFIG_FILE, getConfig, logger } from "./utils/Utils";
+import { CONFIG_DIR, CONFIG_FILE, logger, validateConfig } from "./utils/Utils";
 
 const defaults = `authType = "md5"
 user = "" # mdr username
@@ -27,8 +28,10 @@ async function main(): Promise<void> {
         process.exit(0);
     }
 
-    // Validate config
-    await getConfig();
+    // Validate config synchronious
+    const toml = oldfs.readFileSync(CONFIG_FILE, "utf-8");
+    const config = TOML.parse(toml);
+    validateConfig(config);
 
     // When in development and we use ts-node make sure the commands loaded use .ts extension
     if (process.env.NODE_ENV === "development" && __filename.endsWith(".ts")) {

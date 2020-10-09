@@ -44,7 +44,7 @@ export async function getConfig(): Promise<Config> {
     return validateConfig(config);
 }
 
-export async function validateConfig(config: TOML.JsonMap): Promise<Config> {
+export function validateConfig(config: TOML.JsonMap): Config {
     if (!config.authType || typeof config.authType !== "string") {
         logger.error(`Invalid auth type in ${CONFIG_FILE}\nAuth type can only be md5 or plain`);
         process.exit(1);

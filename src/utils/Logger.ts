@@ -10,7 +10,7 @@ class Logger {
             level: "info",
             format: format.combine(
                 format.timestamp(),
-                format.printf((log) => `${log.label ? chalk.black.bgGreen(`[${log.label}]`) : ""} ${this._getColored(capitalize(log.level))}: ${log.message}`)
+                format.printf((log) => `${log.label ? chalk.black.bgGreen(`[${log.label}] `) : ""}${this._getColored(capitalize(log.level))}: ${log.message}`)
             ),
             transports: [new transports.Console()]
         });

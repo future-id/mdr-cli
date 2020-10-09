@@ -7,6 +7,12 @@ import { AuthType, CONFIG_FILE, getConfig, logger } from "../../utils/Utils";
 export default class extends Command {
     @metadata
     async execute(@param({ description: "Auth type, either plain or md5", required: true }) type: AuthType): Promise<void> {
+        const options = ["plain", "md5"];
+        if (!options.includes(type)) {
+            logger.error("Auth type can only be 'plain' or 'md5'");
+            process.exit(1);
+        }
+
         try {
             const config = await getConfig();
 
