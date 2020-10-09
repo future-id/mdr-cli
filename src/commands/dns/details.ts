@@ -1,6 +1,8 @@
 // fiddev
 import Api from "../../api";
+import { spinner } from "../../utils/Utils";
 import { Command, Options, command, option, metadata } from "clime";
+import { ColorRenderedStyledTable, border, single, color } from "styled-cli-table";
 
 interface Record {
     index: number;
@@ -39,6 +41,7 @@ export class ModOptions extends Options {
 export default class extends Command {
     @metadata
     async execute(options: ModOptions): Promise<void> {
+        spinner.start();
         await api.init();
 
         api.addParam("command", "dns_get_details");
@@ -68,6 +71,34 @@ export default class extends Command {
             });
         }
 
-        console.log(records);
+        const data = [
+            ["#", "id", "type", "host", "address", "priority", "weight", "port"]
+        ];
+
+        for (const record of records) {
+            data.push([String(record.index), record.record_id, record.type, record.host, record.address, record.priority || "-", record.weight || "-", record.port || "-"]);
+        }
+
+        const table = new ColorRenderedStyledTable(data, {
+            ...border(true),
+            borderCharacters: single,
+            paddingLeft: 1,
+            paddingRight: 1,
+            backgroundColor: color.brightWhite,
+            rows: {
+                0: {
+                    align: "center",
+                    color: color.brightCyan + color.bold
+                }
+            },
+            columns: {
+                0: {
+                    align: "center",
+                    color: color.brightCyan + color.bold
+                }
+            }
+        });
+
+        console.log(table.toString());
     }
 }

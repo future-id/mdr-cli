@@ -9,7 +9,7 @@ const defaults = `authType = "md5"
 user = "" # mdr username
 password = "" # mdr password
 host = "manager.mijndomeinreseller.nl"
-apiPath = "/api/?"
+apiPath = "/api/"
 useSSL = true`;
 
 async function main(): Promise<void> {

@@ -1,13 +1,15 @@
 import crypto from "crypto";
-import { Config, getConfig, logger } from "./utils/Utils";
+import urlcat from "urlcat";
 import axios, { AxiosResponse } from "axios";
+import { Config, getConfig, logger, spinner } from "./utils/Utils";
 
 type ParsedData = Record<string, string>;
+type Query = Record<string, string>;
 
 class Api {
     config!: Config;
     password!: string;
-    #query = "";
+    #query: Query = {};
     #intitialized = false;
 
     async init(): Promise<void> {
@@ -21,11 +23,11 @@ class Api {
     }
 
     newRequest(): void {
-        this.#query = "";
+        this.#query = {};
     }
 
     addParam(name: string, value: string): void {
-        this.#query += `${name}=${encodeURIComponent(value)}&`;
+        this.#query[name] = encodeURIComponent(value);
     }
 
     private _parse(data: string): ParsedData {
@@ -53,13 +55,11 @@ class Api {
         this.addParam("pass", this.password);
         this.addParam("authtype", this.config.authType);
 
-        let port = 80;
         let response: AxiosResponse<string>;
         if (this.config.useSSL) {
-            port = 443;
-            response = await axios.get(`https://${this.config.host}:${port}${this.config.apiPath}${this.#query}`);
+            response = await axios.get(urlcat(`https://${this.config.host}:443`, this.config.apiPath, this.#query));
         } else {
-            response = await axios.get(`http://${this.config.host}:${port}${this.config.apiPath}${this.#query}`);
+            response = await axios.get(urlcat(`http://${this.config.host}:80`, this.config.apiPath, this.#query));
         }
 
         const parsed = this._parse(response.data);
@@ -72,12 +72,14 @@ class Api {
         }
 
         if (errcount >= 1) {
+            spinner.stop();
             for (let i = 1; i <= errcount; i++) {
                 logger.error(`[${parsed["errno" + i]}] ${parsed["errnotxt" + i]}`);
             }
             process.exit(1);
         }
 
+        spinner.stop();
         return parsed;
     }
 }

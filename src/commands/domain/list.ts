@@ -1,5 +1,7 @@
 import Api from "../../api";
+import { spinner } from "../../utils/Utils";
 import { Command, command, metadata } from "clime";
+import { ColorRenderedStyledTable, border, single, color } from "styled-cli-table";
 
 interface Domain {
     index: number;
@@ -28,6 +30,7 @@ const api = new Api();
 export default class extends Command {
     @metadata
     async execute(): Promise<void> {
+        spinner.start();
         await api.init();
 
         api.addParam("command", "domain_list");
@@ -69,6 +72,40 @@ export default class extends Command {
             });
         }
 
-        console.log(domains);
+        const data = [
+            ["#", "domain", "registrant"]
+        ];
+
+        for (const item of domains) {
+            data.push([String(item.index), item.domain, item.registrant]);
+        }
+
+        const table = new ColorRenderedStyledTable(data, {
+            ...border(true),
+            borderCharacters: single,
+            paddingLeft: 1,
+            paddingRight: 1,
+            backgroundColor: color.brightWhite,
+            rows: {
+                0: {
+                    align: "center",
+                    color: color.brightCyan + color.bold
+                }
+            },
+            columns: {
+                0: {
+                    align: "center",
+                    color: color.brightCyan + color.bold
+                },
+                1: {
+                    width: 40
+                },
+                [-1]: {
+                    width: 30
+                }
+            }
+        });
+
+        console.log(table.toString());
     }
 }

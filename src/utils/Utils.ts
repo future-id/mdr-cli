@@ -1,9 +1,11 @@
 import path from "path";
+import ora from "ora";
+import Logger from "./Logger";
 import TOML, { AnyJson } from "@iarna/toml";
 import { promises as fs } from "fs";
-import Logger from "./Logger";
 
 export const logger = new Logger();
+export const spinner = ora("Loading");
 
 export const PLATFORM_DIR = process.env.APPDATA || (process.platform === "darwin" ? `${process.env.HOME}/Library/Preferences` : `${process.env.HOME}/.config`);
 export const CONFIG_DIR = path.join(PLATFORM_DIR, "mdr-cli");

@@ -1,4 +1,5 @@
 import Api from "../../api";
+import { spinner } from "../../utils/Utils";
 import { Command, Options, command, option, metadata } from "clime";
 
 const api = new Api();
@@ -51,6 +52,7 @@ export class ModOptions extends Options {
 export default class extends Command {
     @metadata
     async execute(options: ModOptions): Promise<void> {
+        spinner.start();
         await api.init();
 
         api.addParam("command", "dns_record_modify");

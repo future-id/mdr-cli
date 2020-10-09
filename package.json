@@ -1,6 +1,6 @@
 {
     "name": "mdr-cli",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "description": "cli to interact with the mijndomeinreseller api",
     "main": "dist/cli.js",
     "license": "MIT",
@@ -31,6 +31,9 @@
         "axios": "^0.20.0",
         "chalk": "^4.1.0",
         "clime": "^0.5.14",
+        "ora": "^5.1.0",
+        "styled-cli-table": "^1.3.0",
+        "urlcat": "^2.0.4",
         "winston": "^3.3.3",
         "yn": "^4.0.0"
     },
