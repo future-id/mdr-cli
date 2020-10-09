@@ -1,6 +1,6 @@
 {
     "name": "mdr-cli",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "cli to interact with the mijndomeinreseller api",
     "keywords": [
         "cli",
@@ -13,24 +13,28 @@
         "sysadmin",
         "tools"
     ],
-    "main": "dist/cli.js",
+    "main": "./dist/src/cli.js",
     "license": "MIT",
     "author": {
         "name": "Pepijn van den Broek",
         "email": "pepijn@vdbroek.dev",
         "url": "https://vdbroek.dev/"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Pepijn98/mdr-cli.git"
+    },
     "engines": {
         "node": ">=14"
     },
     "bin": {
-        "mdr": "./dist/cli.js"
+        "mdr": "./dist/src/cli.js"
     },
     "scripts": {
         "test": "cross-env NODE_ENV=development ts-node ./src/cli.ts",
         "mdr": "cross-env NODE_ENV=development ts-node ./src/cli.ts",
         "prebuild": "rm -rf dist",
-        "build": "tsc && chmod +x ./dist/cli.js",
+        "build": "tsc && chmod +x ./dist/src/cli.js",
         "format": "prettier --write \"src/**/*.{ts,js}\"",
         "lint": "eslint \"src/**/*.{ts,js}\" --fix",
         "pretty": "npm run format && npm run lint",
@@ -57,7 +61,6 @@
         "eslint": "^7.10.0",
         "eslint-config-prettier": "^6.12.0",
         "gts": "^2.0.2",
-        "nodemon": "^2.0.4",
         "prettier": "^2.1.2",
         "ts-node": "^9.0.0",
         "typescript": "^4.0.3"
