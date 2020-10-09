@@ -1,0 +1,11 @@
+docs/
+src/
+@types/
+.vscode/
+.prettierignore
+.prettierrc
+.editorconfig
+.eslintignore
+.eslintrc
+.examples.md
+tsconfig.json
