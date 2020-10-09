@@ -1,10 +1,9 @@
 #! /usr/bin/env node
 
 import path from "path";
-import TOML from "@iarna/toml";
-import oldfs, { constants, promises as fs } from "fs";
+import { constants, promises as fs } from "fs";
 import { CLI, Shim } from "clime";
-import { CONFIG_DIR, CONFIG_FILE, logger, validateConfig } from "./utils/Utils";
+import { CONFIG_DIR, CONFIG_FILE, getConfigSync, logger, validateConfig } from "./utils/Utils";
 
 const defaults = `authType = "md5"
 user = "" # mdr username
@@ -31,8 +30,7 @@ async function main(): Promise<void> {
     const test = process.argv[2];
     if (test !== "set") {
         // Validate config synchronious
-        const toml = oldfs.readFileSync(CONFIG_FILE, "utf-8");
-        const config = TOML.parse(toml);
+        const config = getConfigSync();
         validateConfig(config);
     }
 

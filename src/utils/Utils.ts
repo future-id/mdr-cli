@@ -2,7 +2,7 @@ import path from "path";
 import ora from "ora";
 import Logger from "./Logger";
 import TOML, { AnyJson } from "@iarna/toml";
-import { promises as fs } from "fs";
+import ofs, { promises as fs } from "fs";
 
 export const logger = new Logger();
 export const spinner = ora("Loading");
@@ -41,6 +41,11 @@ export function checkType(type: string): AuthType {
 export async function getConfig(): Promise<Config> {
     const toml = await fs.readFile(CONFIG_FILE, "utf-8");
     return (await TOML.parse.async(toml)) as Config;
+}
+
+export function getConfigSync(): Config {
+    const toml = ofs.readFileSync(CONFIG_FILE, "utf-8");
+    return TOML.parse(toml) as Config;
 }
 
 export function validateConfig(config: TOML.JsonMap): Config {
