@@ -1,9 +1,12 @@
 #! /usr/bin/env node
 
 import path from "path";
+import checkForUpdates from "update-check";
+import pkg from "../package.json";
 import { constants, promises as fs } from "fs";
 import { CLI, Shim } from "clime";
 import { CONFIG_DIR, CONFIG_FILE, getConfigSync, logger, validateConfig } from "./utils/Utils";
+import chalk from "chalk";
 
 const defaults = `authType = "md5"
 user = "" # mdr username
@@ -25,6 +28,15 @@ async function main(): Promise<void> {
         await fs.writeFile(CONFIG_FILE, defaults, "utf-8");
         logger.info(`Config file created at ${CONFIG_FILE}.\nPlease edit with a username and password before continuing!`);
         process.exit(0);
+    }
+
+    let update = null;
+    try {
+        update = await checkForUpdates(pkg);
+    } catch (err) {}
+
+    if (update) {
+        logger.warn(`You're using an old version of ${chalk.bold(pkg.name)}, please update to the latest version ${chalk.bold(update.latest)} using "npm i -g mdr-cli@latest"`);
     }
 
     const test = process.argv[2];
