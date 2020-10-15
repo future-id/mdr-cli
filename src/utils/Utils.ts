@@ -11,6 +11,13 @@ export const PLATFORM_DIR = process.env.APPDATA || (process.platform === "darwin
 export const CONFIG_DIR = path.join(PLATFORM_DIR, "mdr-cli");
 export const CONFIG_FILE = path.join(CONFIG_DIR, "settings.toml");
 
+export const defaultConf = `authType = "md5"
+user = "" # mdr username
+password = "" # mdr password
+host = "manager.mijndomeinreseller.nl"
+apiPath = "/api/"
+useSSL = true`;
+
 export type AuthType = "plain" | "md5";
 
 export interface Config {
@@ -35,6 +42,20 @@ export function checkType(type: string): AuthType {
         default:
             logger.error(`Invalid auth type in ${CONFIG_FILE}\nAuth type can only be md5 or plain`);
             process.exit(1);
+    }
+}
+
+export async function createConfig(): Promise<void> {
+    const dirExists = ofs.existsSync(CONFIG_DIR);
+    if (!dirExists) {
+        await fs.mkdir(CONFIG_DIR);
+    }
+
+    const fileExists = ofs.existsSync(CONFIG_FILE);
+    if (!fileExists) {
+        await fs.writeFile(CONFIG_FILE, defaultConf, "utf-8");
+        logger.info(`Config file created at ${CONFIG_FILE}.\nPlease edit with a username and password before continuing!`);
+        process.exit(0);
     }
 }
 

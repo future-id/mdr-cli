@@ -3,32 +3,12 @@
 import path from "path";
 import checkForUpdates from "update-check";
 import pkg from "../package.json";
-import { constants, promises as fs } from "fs";
 import { CLI, Shim } from "clime";
-import { CONFIG_DIR, CONFIG_FILE, getConfigSync, logger, validateConfig } from "./utils/Utils";
+import { createConfig, getConfigSync, logger, validateConfig } from "./utils/Utils";
 import chalk from "chalk";
 
-const defaults = `authType = "md5"
-user = "" # mdr username
-password = "" # mdr password
-host = "manager.mijndomeinreseller.nl"
-apiPath = "/api/"
-useSSL = true`;
-
 async function main(): Promise<void> {
-    try {
-        await fs.access(CONFIG_DIR, constants.F_OK | constants.W_OK | constants.R_OK);
-    } catch (e) {
-        await fs.mkdir(CONFIG_DIR);
-    }
-
-    try {
-        await fs.access(CONFIG_FILE, constants.F_OK | constants.W_OK | constants.R_OK);
-    } catch (e) {
-        await fs.writeFile(CONFIG_FILE, defaults, "utf-8");
-        logger.info(`Config file created at ${CONFIG_FILE}.\nPlease edit with a username and password before continuing!`);
-        process.exit(0);
-    }
+    await createConfig();
 
     let update = null;
     try {
