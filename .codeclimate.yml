@@ -1,8 +1,8 @@
 version: "2"
-plugins:
-    eslint:
-        enabled: true
-        config: .eslintrc
+# plugins:
+#     eslint:
+#         enabled: true
+#         config: .eslintrc
 ratings:
     paths:
         - "**.ts"
