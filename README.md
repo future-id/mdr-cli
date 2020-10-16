@@ -1,3 +1,7 @@
+[![NPM version](https://img.shields.io/npm/v/mdr-cli.svg?maxAge=3600)](https://www.npmjs.com/package/mdr-cli)
+[![Dependencies](https://img.shields.io/david/Pepijn98/mdr-cli.svg?maxAge=3600)](https://david-dm.org/Pepijn98/mdr-cli)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3c1c66ead828f566b0b7/maintainability)](https://codeclimate.com/github/Pepijn98/mdr-cli/maintainability)
+
 # mdr-cli
 cli to interact with the mijndomeinreseller api \
 MijnDomeinReseller docs: https://pepijn98.github.io/mdr-cli/
