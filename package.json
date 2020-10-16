@@ -1,6 +1,6 @@
 {
     "name": "mdr-cli",
-    "version": "0.1.7",
+    "version": "0.2.0",
     "description": "cli to interact with the mijndomeinreseller api",
     "keywords": [
         "cli",

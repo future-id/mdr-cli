@@ -1,6 +1,6 @@
 import yn from "yn";
-import Api from "../../api";
-import { spinner, logger } from "../../utils/Utils";
+import Api from "../../../api";
+import { spinner, logger } from "../../../utils/Utils";
 import { Command, Options, command, option, metadata } from "clime";
 
 const api = new Api();
@@ -23,9 +23,17 @@ class CmdOptions extends Options {
     tld!: string;
 
     @option({
+        name: "template-id",
+        flag: "i",
+        description: "Template id the record is part off",
+        required: true
+    })
+    template_id!: number;
+
+    @option({
         name: "record",
         flag: "r",
-        description: "recordId of the record to be changed",
+        description: "recordId of the template record to be changed",
         required: true
     })
     record!: number;
@@ -33,7 +41,7 @@ class CmdOptions extends Options {
     @option({
         name: "host",
         flag: "h",
-        description: "Host name of the record",
+        description: "Host name of the template record",
         required: true
     })
     host!: string;
@@ -56,9 +64,10 @@ export default class extends Command {
 
         api.newRequest();
 
-        api.addParam("command", "dns_record_modify");
+        api.addParam("command", "dns_template_record_modify");
         api.addParam("domein", options.domain);
         api.addParam("tld", options.tld);
+        api.addParam("template_id", String(options.template_id));
         api.addParam("record_id", String(options.record));
         api.addParam("host", options.host);
         api.addParam("address", options.address);

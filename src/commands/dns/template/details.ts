@@ -1,6 +1,6 @@
-import Api from "../../api";
-import { spinner } from "../../utils/Utils";
-import { Command, Options, command, option, metadata } from "clime";
+import Api from "../../../api";
+import { spinner } from "../../../utils/Utils";
+import { Command, command, metadata, option, Options } from "clime";
 import { ColorRenderedStyledTable, border, single, color } from "styled-cli-table";
 
 interface DnsRecord {
@@ -18,20 +18,12 @@ const api = new Api();
 
 class CmdOptions extends Options {
     @option({
-        name: "domain",
-        flag: "d",
-        description: "Domain name",
+        name: "template-id",
+        flag: "i",
+        description: "Template ID",
         required: true
     })
-    domain!: string;
-
-    @option({
-        name: "tld",
-        flag: "t",
-        description: "TLD extension of the domain name",
-        required: true
-    })
-    tld!: string;
+    template_id!: string;
 }
 
 @command()
@@ -43,9 +35,8 @@ export default class extends Command {
 
         api.newRequest();
 
-        api.addParam("command", "dns_get_details");
-        api.addParam("domein", options.domain);
-        api.addParam("tld", options.tld);
+        api.addParam("command", "dns_template_get_details");
+        api.addParam("template_id", options.template_id);
 
         const records: DnsRecord[] = [];
         const response = await api.send();

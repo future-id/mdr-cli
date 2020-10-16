@@ -1,10 +1,10 @@
 import Api from "../../api";
-import { spinner } from "../../utils/Utils";
-import { Command, command, metadata } from "clime";
+import { logger, spinner } from "../../utils/Utils";
+import { Command, command, metadata, option, Options } from "clime";
 import { ColorRenderedStyledTable, border, single, color } from "styled-cli-table";
 
 interface Domain {
-    index: number;
+    index: string;
     domain: string;
     registrant: string;
     registrant_id: string;
@@ -24,22 +24,91 @@ interface Domain {
 
 const api = new Api();
 
+const sortOptions = ["domein", "registrant", "admin", "tech", "verloopdatum", "status"];
+const orderOptions = ["asc", "ascending", "desc", "descending"];
+
+const orderMap = {
+    "asc": "0",
+    "ascending": "0",
+    "desc": "1",
+    "descending": "1"
+};
+
+class CmdOptions extends Options {
+    @option({
+        name: "tld",
+        flag: "t",
+        description: "Filter for a specific tld",
+        required: false
+    })
+    tld?: string;
+
+    @option({
+        name: "sort",
+        flag: "s",
+        description: "Sort the list. Valid options are domein, registrant, admin, tech, verloopdatum or status",
+        required: false
+    })
+    sort?: "domein" | "registrant" | "admin" | "tech" | "verloopdatum" | "status";
+
+    @option({
+        name: "order",
+        flag: "o",
+        description: "Specify in which order it should be shown (asc or desc)",
+        required: false
+    })
+    order?: "asc" | "ascending" | "desc" | "descending";
+
+    @option({
+        name: "begin",
+        flag: "b",
+        description: "Show domain names starting with a letter of the alphabet, values: a-z or 0-9",
+        required: false
+    })
+    begin?: string;
+}
+
 @command({
     description: "List all domains"
 })
 export default class extends Command {
     @metadata
-    async execute(): Promise<void> {
+    async execute(options: CmdOptions): Promise<void> {
         spinner.start();
         await api.init();
 
+        api.newRequest();
+
         api.addParam("command", "domain_list");
 
-        // Optional params
-        // api.addParam("tld", "");
-        api.addParam("sort", "domein");
-        // api.addParam("order", "");
-        // api.addParam("begin", "");
+        if (options.tld) api.addParam("tld", options.tld);
+
+        if (options.begin) {
+            if (/^[a-z0-9]{1}$/ui.test(options.begin)) {
+                spinner.stop();
+                logger.error("Invalid begin option, the value of begin can only be one letter or number");
+                process.exit(1);
+            }
+            api.addParam("begin", options.begin);
+        }
+
+        if (options.sort) {
+            if (!sortOptions.includes(options.sort)) {
+                spinner.stop();
+                logger.error("Invalid sort option, valid options are domein, registrant, admin, tech, verloopdatum or status");
+                process.exit(1);
+            }
+            api.addParam("sort", options.sort);
+        }
+
+        if (options.order) {
+            if (!orderOptions.includes(options.order)) {
+                spinner.stop();
+                logger.error("Invalid order option, valid options are asc, ascending, desc or descending");
+                process.exit(1);
+            }
+            api.addParam("order", orderMap[options.order]);
+        }
 
         const domains: Domain[] = [];
         const response = await api.send();
@@ -53,7 +122,7 @@ export default class extends Command {
 
         for (let i = 0; i < domainCount; i++) {
             domains.push({
-                index: i,
+                index: String(i),
                 domain: response[`domein[${i}]`],
                 registrant: response[`registrant[${i}]`],
                 registrant_id: response[`registrant_id[${i}]`],
@@ -77,7 +146,7 @@ export default class extends Command {
         ];
 
         for (const item of domains) {
-            data.push([String(item.index), item.domain, item.registrant]);
+            data.push([item.index, item.domain, item.registrant]);
         }
 
         const table = new ColorRenderedStyledTable(data, {

@@ -19,8 +19,8 @@ async function main(): Promise<void> {
         logger.warn(`You're using an old version of ${chalk.bold(pkg.name)}, please update to the latest version ${chalk.bold(update.latest)} using "npm i -g mdr-cli@latest"`);
     }
 
-    const test = process.argv[2];
-    if (test !== "set") {
+    const cmd = process.argv[2];
+    if (cmd !== "set") {
         // Validate config synchronious
         const config = getConfigSync();
         validateConfig(config);

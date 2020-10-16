@@ -16,6 +16,10 @@ class Logger {
         });
     }
 
+    public success(message: string): void {
+        console.log(`${chalk.bold.greenBright("Success")}: ${message}`);
+    }
+
     public info(message: string, label?: string): void {
         this.#log.info(message, { label });
     }
