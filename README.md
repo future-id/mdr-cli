@@ -2,6 +2,12 @@
 cli to interact with the mijndomeinreseller api \
 MijnDomeinReseller docs: https://pepijn98.github.io/mdr-cli/
 
+# Requirements
+- NodeJS 14+
+- npm or yarn
+- mijndomeinreseller account
+- internet connection :)
+
 # Installation
 `npm i -g mdr-cli@latest` or `yarn global add mdr-cli@latest`
 
