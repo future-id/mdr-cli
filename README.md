@@ -19,12 +19,12 @@ mdr \<subcommand\>
 - `dns`
     - `template` - Create, add, list or modify dns template records
         - `details`, `info` - Get details about a specific dns template
-            - `-i`, `--template-id` - Template ID **[required]**
+            - `-i`, `--template-id` \<template_id\> - Template ID **[required]**
         - `list` - Get a list of all dns templates
         - `modify`, `mod` - Modify dns template records
             - `-d`, `--domain` \<domain\>   - Domain name **[required]**
             - `-t`, `--tld` \<tld\>         - TLD extension of the domain name **[required]**
-            - `-i`, `--template-id` \<tld\> - Template id the record is part off **[required]**
+            - `-i`, `--template-id` \<template_id\> - Template id the record is part off **[required]**
             - `-r`, `--record` \<record\>   - recordId of the template record to be changed **[required]**
             - `-h`, `--host` \<host\>       - Host name of the template record **[required]**
             - `-a`, `--address` \<address\> - Address, url or host name of new record **[required]**
