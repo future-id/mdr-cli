@@ -1,11 +1,11 @@
 #! /usr/bin/env node
 
 import path from "path";
+import chalk from "chalk";
 import checkForUpdates from "update-check";
 import pkg from "../package.json";
 import { CLI, Shim } from "clime";
 import { createConfig, getConfigSync, logger, validateConfig } from "./utils/Utils";
-import chalk from "chalk";
 
 async function main(): Promise<void> {
     await createConfig();

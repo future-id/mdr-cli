@@ -1,6 +1,5 @@
-import yn from "yn";
 import Api from "../../api";
-import { spinner, logger } from "../../utils/Utils";
+import { spinner, logger, yn } from "../../utils/Utils";
 import { Command, Options, command, option, metadata } from "clime";
 
 const api = new Api();

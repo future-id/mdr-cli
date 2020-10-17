@@ -1,8 +1,7 @@
-import yn from "yn";
 import TOML from "@iarna/toml";
 import { promises as fs } from "fs";
 import { Command, command, param, metadata } from "clime";
-import { CONFIG_FILE, getConfig, logger } from "../../utils/Utils";
+import { CONFIG_FILE, getConfig, logger, yn } from "../../utils/Utils";
 
 @command()
 export default class extends Command {
