@@ -8,4 +8,6 @@ src/
 .eslintignore
 .eslintrc
 .examples.md
+.do-not-commit
+.codeclimate.yml
 tsconfig.json
