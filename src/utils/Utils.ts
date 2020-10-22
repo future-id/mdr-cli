@@ -1,7 +1,7 @@
 import path from "path";
 import ora from "ora";
 import Logger from "./Logger";
-import TOML, { AnyJson } from "@iarna/toml";
+import TOML from "@iarna/toml";
 import ofs, { promises as fs } from "fs";
 
 export const logger = new Logger();
@@ -20,14 +20,13 @@ useSSL = true`;
 
 export type AuthType = "plain" | "md5";
 
-export interface Config {
-    authType: "plain" | "md5";
+export interface Config extends TOML.JsonMap {
+    authType: AuthType;
     user: string;
     password: string;
     host: string;
     apiPath: string;
     useSSL: boolean;
-    [x: string]: AnyJson;
 }
 
 export function capitalize(str: string): string {
