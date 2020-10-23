@@ -13,7 +13,10 @@ export const subcommands: SubcommandDefinition[] = [
     },
     {
         name: "modify",
-        alias: "mod",
+        aliases: [
+            "mod",
+            "edit"
+        ],
         brief: "Modify dns records"
     }
 ];
