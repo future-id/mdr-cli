@@ -24,11 +24,10 @@ It will quit after creating the config because you have to add a user and psswor
 Use `mdr set username <name>` and `mdr set password <pass>` for this!
 
 # Usage
-mdr \<subcommand\>
-
+`mdr` \<subcommand\> [...options]
+- `-h`, `--help` - Show help message (`--help` also works on all subcommands, `-h` doesn't) **[optional]**
+- `-v`, `--version` - Show current version **[optional]**
 - `dns`
-    - `-h`, `--help` - Show help message (`--help` also works on all subcommands, `-h` doesn't) **[optional]**
-    - `-v`, `--version` - Show current version **[optional]**
     - `template` - Create, add, list or modify dns template records
         - `details`, `info` - Get details about a specific dns template
             - `-i`, `--template-id` \<template_id\> - Template ID **[required]**
