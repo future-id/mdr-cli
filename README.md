@@ -27,6 +27,8 @@ Use `mdr set username <name>` and `mdr set password <pass>` for this!
 mdr \<subcommand\>
 
 - `dns`
+    - `-h`, `--help` - Show help message (`--help` also works on all subcommands, `-h` doesn't) **[optional]**
+    - `-v`, `--version` - Show current version **[optional]**
     - `template` - Create, add, list or modify dns template records
         - `details`, `info` - Get details about a specific dns template
             - `-i`, `--template-id` \<template_id\> - Template ID **[required]**
