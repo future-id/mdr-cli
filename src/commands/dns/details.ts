@@ -1,20 +1,8 @@
-import Api from "../../api";
+import ApiCommand from "../../utils/ApiCommand";
+import { DNSRecord } from "../../utils/Types";
 import { spinner } from "../../utils/Utils";
-import { Command, Options, command, option, metadata } from "clime";
+import { Options, command, option, metadata } from "clime";
 import { ColorRenderedStyledTable, border, single, color } from "styled-cli-table";
-
-interface DnsRecord {
-    index: string;
-    record_id: string;
-    type: string;
-    host: string;
-    address: string;
-    priority: string;
-    weight: string;
-    port: string;
-}
-
-const api = new Api();
 
 class CmdOptions extends Options {
     @option({
@@ -35,20 +23,19 @@ class CmdOptions extends Options {
 }
 
 @command()
-export default class extends Command {
+export default class extends ApiCommand {
     @metadata
     async execute(options: CmdOptions): Promise<void> {
         spinner.start();
-        await api.init();
 
-        api.newRequest();
+        this.api.newRequest();
 
-        api.addParam("command", "dns_get_details");
-        api.addParam("domein", options.domain);
-        api.addParam("tld", options.tld);
+        this.api.addParam("command", "dns_get_details");
+        this.api.addParam("domein", options.domain);
+        this.api.addParam("tld", options.tld);
 
-        const records: DnsRecord[] = [];
-        const response = await api.send();
+        const records: DNSRecord[] = [];
+        const response = await this.api.send();
 
         let recordCount = 0;
         try {

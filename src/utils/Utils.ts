@@ -3,6 +3,7 @@ import ora from "ora";
 import Logger from "./Logger";
 import TOML from "@iarna/toml";
 import ofs, { promises as fs } from "fs";
+import { Config, AuthType } from "./Types";
 
 export const logger = new Logger();
 export const spinner = ora("Loading");
@@ -12,22 +13,11 @@ export const CONFIG_DIR = path.join(PLATFORM_DIR, "mdr-cli");
 export const CONFIG_FILE = path.join(CONFIG_DIR, "settings.toml");
 
 export const defaultConf = `authType = "md5"
-user = "" # mdr username
-password = "" # mdr password
+user = ""
+password = ""
 host = "manager.mijndomeinreseller.nl"
 apiPath = "/api/"
 useSSL = true`;
-
-export type AuthType = "plain" | "md5";
-
-export interface Config extends TOML.JsonMap {
-    authType: AuthType;
-    user: string;
-    password: string;
-    host: string;
-    apiPath: string;
-    useSSL: boolean;
-}
 
 export function capitalize(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1);

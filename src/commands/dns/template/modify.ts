@@ -1,8 +1,6 @@
-import Api from "../../../api";
+import ApiCommand from "../../../utils/ApiCommand";
 import { spinner, logger, yn } from "../../../utils/Utils";
-import { Command, Options, command, option, metadata } from "clime";
-
-const api = new Api();
+import { Options, command, option, metadata } from "clime";
 
 class CmdOptions extends Options {
     @option({
@@ -55,23 +53,22 @@ class CmdOptions extends Options {
 }
 
 @command()
-export default class extends Command {
+export default class extends ApiCommand {
     @metadata
     async execute(options: CmdOptions): Promise<void> {
         spinner.start();
-        await api.init();
 
-        api.newRequest();
+        this.api.newRequest();
 
-        api.addParam("command", "dns_template_record_modify");
-        api.addParam("domein", options.domain);
-        api.addParam("tld", options.tld);
-        api.addParam("template_id", String(options.template_id));
-        api.addParam("record_id", String(options.record));
-        api.addParam("host", options.host);
-        api.addParam("address", options.address);
+        this.api.addParam("command", "dns_template_record_modify");
+        this.api.addParam("domein", options.domain);
+        this.api.addParam("tld", options.tld);
+        this.api.addParam("template_id", String(options.template_id));
+        this.api.addParam("record_id", String(options.record));
+        this.api.addParam("host", options.host);
+        this.api.addParam("address", options.address);
 
-        const response = await api.send();
+        const response = await this.api.send();
         if (response.errcount === "0" && yn(response.done)) {
             logger.success("DNS template record successfully modified!");
         }

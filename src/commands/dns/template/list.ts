@@ -1,29 +1,21 @@
-import Api from "../../../api";
+import ApiCommand from "../../../utils/ApiCommand";
+import { Template } from "../../../utils/Types";
 import { spinner } from "../../../utils/Utils";
-import { Command, command, metadata } from "clime";
+import { command, metadata } from "clime";
 import { ColorRenderedStyledTable, border, single, color } from "styled-cli-table";
 
-interface Template {
-    index: string;
-    template_id: string;
-    template_name: string;
-}
-
-const api = new Api();
-
 @command()
-export default class extends Command {
+export default class extends ApiCommand {
     @metadata
     async execute(): Promise<void> {
         spinner.start();
-        await api.init();
 
-        api.newRequest();
+        this.api.newRequest();
 
-        api.addParam("command", "dns_template_list");
+        this.api.addParam("command", "dns_template_list");
 
         const templates: Template[] = [];
-        const response = await api.send();
+        const response = await this.api.send();
 
         let templateCount = 0;
         try {

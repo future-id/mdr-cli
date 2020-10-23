@@ -4,19 +4,20 @@ import urlcat from "urlcat";
 import chalk from "chalk";
 import axios, { AxiosResponse } from "axios";
 import { name } from "../package.json";
-import { Config, getConfig, logger, spinner, validateConfig } from "./utils/Utils";
+import { Config } from "./utils/Types";
+import { getConfigSync, logger, spinner, validateConfig } from "./utils/Utils";
 
 type ParsedData = Record<string, string>;
 type Query = Record<string, string>;
 
 class Api {
-    config!: Config;
-    password!: string;
+    config: Config;
+    password: string;
     #query: Query = {};
     #intitialized = false;
 
-    async init(): Promise<void> {
-        this.config = await getConfig();
+    constructor() {
+        this.config = getConfigSync();
         validateConfig(this.config);
 
         const b64 = isBase64(this.config.password);
@@ -39,6 +40,7 @@ class Api {
         if (this.config.authType === "md5") {
             this.password = crypto.createHash("md5").update(this.password).digest("hex");
         }
+
         this.#intitialized = true;
     }
 

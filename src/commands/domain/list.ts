@@ -1,28 +1,8 @@
-import Api from "../../api";
+import ApiCommand from "../../utils/ApiCommand";
+import { Domain } from "../../utils/Types";
 import { logger, spinner } from "../../utils/Utils";
-import { Command, command, metadata, option, Options } from "clime";
+import { command, metadata, option, Options } from "clime";
 import { ColorRenderedStyledTable, border, single, color } from "styled-cli-table";
-
-interface Domain {
-    index: string;
-    domain: string;
-    registrant: string;
-    registrant_id: string;
-    admin: string;
-    admin_id: string;
-    tech: string;
-    tech_id: string;
-    bill: string;
-    bill_id: string;
-    ns_id: string;
-    dns_template: string;
-    verloopdatum: string;
-    inaccountdatum: string;
-    status: string;
-    autorenew: string;
-}
-
-const api = new Api();
 
 const sortOptions = ["domein", "registrant", "admin", "tech", "verloopdatum", "status"];
 const orderOptions = ["asc", "ascending", "desc", "descending"];
@@ -71,17 +51,16 @@ class CmdOptions extends Options {
 @command({
     description: "List all domains"
 })
-export default class extends Command {
+export default class extends ApiCommand {
     @metadata
     async execute(options: CmdOptions): Promise<void> {
         spinner.start();
-        await api.init();
 
-        api.newRequest();
+        this.api.newRequest();
 
-        api.addParam("command", "domain_list");
+        this.api.addParam("command", "domain_list");
 
-        if (options.tld) api.addParam("tld", options.tld);
+        if (options.tld) this.api.addParam("tld", options.tld);
 
         if (options.begin) {
             if (/^[a-z0-9]{1}$/ui.test(options.begin)) {
@@ -89,7 +68,7 @@ export default class extends Command {
                 logger.error("Invalid begin option, the value of begin can only be one letter or number");
                 process.exit(1);
             }
-            api.addParam("begin", options.begin);
+            this.api.addParam("begin", options.begin);
         }
 
         if (options.sort) {
@@ -98,7 +77,7 @@ export default class extends Command {
                 logger.error("Invalid sort option, valid options are domein, registrant, admin, tech, verloopdatum or status");
                 process.exit(1);
             }
-            api.addParam("sort", options.sort);
+            this.api.addParam("sort", options.sort);
         }
 
         if (options.order) {
@@ -107,11 +86,11 @@ export default class extends Command {
                 logger.error("Invalid order option, valid options are asc, ascending, desc or descending");
                 process.exit(1);
             }
-            api.addParam("order", orderMap[options.order]);
+            this.api.addParam("order", orderMap[options.order]);
         }
 
         const domains: Domain[] = [];
-        const response = await api.send();
+        const response = await this.api.send();
 
         let domainCount = 0;
         try {
