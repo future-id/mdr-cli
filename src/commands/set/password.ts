@@ -9,7 +9,7 @@ export default class extends Command {
     async execute(@param({ description: "New password", required: true }) password: string): Promise<void> {
         try {
             const config = await getConfig();
-            config.password = password;
+            config.password = Buffer.from(password).toString("base64");
             const toml = TOML.stringify(config);
             await fs.writeFile(CONFIG_FILE, toml, "utf-8");
             logger.info("Password successfully updated");
