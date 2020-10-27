@@ -26,10 +26,10 @@ class Api {
         } else {
             spinner.stop();
             logger.warn(
-                "\nYour password is saved as plain text, this can happen because of three things:\n" +
-                "- You manually change the config file (please don't do this)\n" +
-                "- You're running an old version\n" +
-                "- You updated to v1 but haven't updated your config file yet\n\n" +
+                "\nYour password is saved as plain text, this can happen because of three reasons:\n" +
+                `1. You manually changed the config file ${chalk.bold("(don't do this)")}\n` +
+                "2. You're running an old version\n" +
+                "3. You just updated to version >= 1.0.0 but haven't updated your config file yet\n\n" +
                 chalk.bold("To fix this follow these steps:\n") +
                 `1. Update mdr to the latest version ${chalk.bold(`npm i -g ${name}@latest`)}\n` +
                 `2. Update your password using ${chalk.bold("mdr set password <password>")} (replace ${chalk.bold("<password>")} with your actual password)`
