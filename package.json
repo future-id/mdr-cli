@@ -38,10 +38,10 @@
         "build:test": "tsc --noEmit",
         "format": "prettier --write \"src/**/*.{ts,js}\"",
         "lint": "eslint \"src/**/*.{ts,js}\" --fix",
-        "pretty": "npm run format && npm run lint",
+        "pretty": "yarn format && yarn lint",
         "clean": "rm -rf ./node_modules ./package-lock.json ./yarn.lock",
-        "setup": "npm install && npm run build && npm link",
-        "prepublishOnly": "npm run build"
+        "setup": "yarn && yarn build && yarn link",
+        "prepublishOnly": "yarn build"
     },
     "dependencies": {
         "@iarna/toml": "^2.2.5",
