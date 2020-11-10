@@ -1,6 +1,6 @@
 {
     "name": "mdr-cli",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "cli to interact with the mijndomeinreseller api",
     "keywords": [
         "cli",
@@ -38,10 +38,10 @@
         "build:test": "tsc --noEmit",
         "format": "prettier --write \"src/**/*.{ts,js}\"",
         "lint": "eslint \"src/**/*.{ts,js}\" --fix",
-        "pretty": "npm run format && npm run lint",
+        "pretty": "yarn format && yarn lint",
         "clean": "rm -rf ./node_modules ./package-lock.json ./yarn.lock",
-        "setup": "npm install && npm run build && npm link",
-        "prepublishOnly": "npm run build"
+        "setup": "yarn && yarn build && yarn link",
+        "prepublishOnly": "yarn build"
     },
     "dependencies": {
         "@iarna/toml": "^2.2.5",
@@ -57,11 +57,11 @@
     },
     "devDependencies": {
         "@types/is-base64": "^1.1.0",
-        "@types/node": "^14.14.6",
-        "@typescript-eslint/eslint-plugin": "^4.6.1",
-        "@typescript-eslint/parser": "^4.6.1",
+        "@types/node": "^14.14.7",
+        "@typescript-eslint/eslint-plugin": "^4.7.0",
+        "@typescript-eslint/parser": "^4.7.0",
         "cross-env": "^7.0.2",
-        "eslint": "^7.12.1",
+        "eslint": "^7.13.0",
         "eslint-config-prettier": "^6.15.0",
         "gts": "^3.0.2",
         "prettier": "^2.1.2",

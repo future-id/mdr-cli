@@ -1,46 +1,17 @@
-import crypto from "crypto";
-import isBase64 from "is-base64";
 import urlcat from "urlcat";
-import chalk from "chalk";
 import axios, { AxiosResponse } from "axios";
-import { name } from "../package.json";
-import { Config } from "./utils/Types";
-import { getConfigSync, logger, spinner, validateConfig } from "./utils/Utils";
-
-type ParsedData = Record<string, string>;
-type Query = Record<string, string>;
+import { Config } from "./utils/Config";
+import { ParsedData, Query } from "./utils/Types";
+import { getConfigSync, logger, spinner } from "./utils/Utils";
 
 class Api {
     config: Config;
-    password: string;
     #query: Query = {};
     #intitialized = false;
 
     constructor() {
         this.config = getConfigSync();
-        validateConfig(this.config);
-
-        const b64 = isBase64(this.config.password);
-        if (b64) {
-            this.password = Buffer.from(this.config.password, "base64").toString("utf-8");
-        } else {
-            spinner.stop();
-            logger.warn(
-                "\nYour password is saved as plain text, this can happen because of three reasons:\n" +
-                `1. You manually changed the config file ${chalk.bold("(don't do this)")}\n` +
-                "2. You're running an old version\n" +
-                "3. You just updated to version >= 1.0.0 but haven't updated your config file yet\n\n" +
-                chalk.bold("To fix this follow these steps:\n") +
-                `1. Update mdr to the latest version ${chalk.bold(`npm i -g ${name}@latest`)}\n` +
-                `2. Update your password using ${chalk.bold("mdr set password <password>")} (replace ${chalk.bold("<password>")} with your actual password)`
-            );
-            process.exit(1);
-        }
-
-        if (this.config.authType === "md5") {
-            this.password = crypto.createHash("md5").update(this.password).digest("hex");
-        }
-
+        this.config.validate();
         this.#intitialized = true;
     }
 
@@ -53,7 +24,7 @@ class Api {
     }
 
     private _parse(data: string): ParsedData {
-        const result: Record<string, string> = {};
+        const result: ParsedData = {};
         const lines = data.split("\n");
         const lineCount = lines.length;
 
@@ -74,7 +45,7 @@ class Api {
         }
 
         this.addParam("user", this.config.user);
-        this.addParam("pass", this.password);
+        this.addParam("pass", this.config.password);
         this.addParam("authtype", this.config.authType);
 
         let response: AxiosResponse<string>;

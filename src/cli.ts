@@ -5,10 +5,12 @@ import chalk from "chalk";
 import checkForUpdates from "update-check";
 import pkg from "../package.json";
 import { CLI, Shim } from "clime";
-import { createConfig, getConfigSync, logger, validateConfig } from "./utils/Utils";
+import { configExists, createConfig, getConfigSync, logger } from "./utils/Utils";
 
 async function main(): Promise<void> {
-    await createConfig();
+    if (!configExists()) {
+        await createConfig();
+    }
 
     let update = null;
     try {
@@ -23,7 +25,7 @@ async function main(): Promise<void> {
     if (cmd !== "set") {
         // Validate config synchronious
         const config = getConfigSync();
-        validateConfig(config);
+        config.validate();
     }
 
     // When in development and we use ts-node make sure the commands loaded use .ts extension

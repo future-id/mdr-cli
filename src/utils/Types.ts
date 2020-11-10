@@ -1,15 +1,6 @@
-import TOML from "@iarna/toml";
-
 export type AuthType = "plain" | "md5";
-
-export interface Config extends TOML.JsonMap {
-    authType: AuthType;
-    user: string;
-    password: string;
-    host: string;
-    apiPath: string;
-    useSSL: boolean;
-}
+export type ParsedData = Record<string, string>;
+export type Query = Record<string, string>;
 
 export interface Domain {
     index: string;
