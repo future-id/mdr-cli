@@ -1,6 +1,5 @@
 import pkg from "../../package.json";
 import checkForUpdates from "update-check";
-import { version } from "../../package.json";
 import {
     Command,
     command,
@@ -48,7 +47,7 @@ export default class Default extends Command {
             try {
                 update = await checkForUpdates(pkg);
             } catch (err) {}
-            console.log(`v${version}${update ? ` | latest: v${update.latest}` : ""}`);
+            console.log(`v${pkg.version}${update ? ` | latest: v${update.latest}` : ""}`);
         } else {
             const help = await Default.getHelp();
             help.print(process.stdout, process.stderr);
