@@ -1,7 +1,33 @@
 import pkg from "../../package.json";
 import checkForUpdates from "update-check";
-import { Command, command, Options, option, metadata } from "clime";
 import { version } from "../../package.json";
+import {
+    Command,
+    command,
+    Options,
+    option,
+    metadata,
+    SubcommandDefinition
+} from "clime";
+
+export const subcommands: SubcommandDefinition[] = [
+    {
+        name: "dns",
+        brief: "List, get details and modify dns records/templates"
+    },
+    {
+        name: "domain",
+        brief: "Domain specific commands"
+    },
+    {
+        name: "set",
+        brief: "Update mdr config file"
+    },
+    {
+        name: "get",
+        brief: "Get mdr config values (TODO)"
+    }
+];
 
 export class CmdOptions extends Options {
     @option({

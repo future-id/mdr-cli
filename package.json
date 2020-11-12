@@ -38,7 +38,6 @@
         "build:test": "tsc --noEmit",
         "format": "prettier --write \"src/**/*.{ts,js}\"",
         "lint": "eslint \"src/**/*.{ts,js}\" --fix",
-        "pretty": "yarn format && yarn lint",
         "clean": "rm -rf ./node_modules ./package-lock.json ./yarn.lock",
         "setup": "yarn && yarn build && yarn link",
         "prepublishOnly": "yarn build"

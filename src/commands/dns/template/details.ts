@@ -53,7 +53,16 @@ export default class extends ApiCommand {
         ];
 
         for (const record of records) {
-            data.push([record.index, record.record_id, record.type, record.host, record.address, record.priority || "-", record.weight || "-", record.port || "-"]);
+            data.push([
+                record.index,
+                record.record_id,
+                record.type,
+                record.host,
+                record.address,
+                record.priority || "-",
+                record.weight || "-",
+                record.port || "-"
+            ]);
         }
 
         const table = new ColorRenderedStyledTable(data, {

@@ -1,20 +1,25 @@
 import path from "path";
 import ora from "ora";
+import chalk from "chalk";
 import Logger from "./Logger";
 import TOML from "@iarna/toml";
 import ofs, { promises as fs } from "fs";
 import { Config, IConfig } from "./Config";
 import { AuthType } from "./Types";
+import { name } from "../../package.json";
 
 export const logger = new Logger();
 export const spinner = ora("Loading");
+
+export const fileName = "settings";
+export const fileType = "toml";
 
 // Platform dir only tested on linux Pop-OS 20.04
 // According to google and stack overflow these paths should be correct for all systems
 // There is a slight chance it might not properly work on some systems ¯\_(ツ)_/¯
 export const PLATFORM_DIR = process.env.APPDATA || (process.platform === "darwin" ? `${process.env.HOME}/Library/Preferences` : `${process.env.HOME}/.config`);
-export const CONFIG_DIR = path.join(PLATFORM_DIR, "mdr-cli");
-export const CONFIG_FILE = path.join(CONFIG_DIR, "settings.toml");
+export const CONFIG_DIR = path.join(PLATFORM_DIR, name);
+export const CONFIG_FILE = path.join(CONFIG_DIR, `${fileName}.${fileType}`);
 
 export const defaultConf = `authType = "md5"
 user = ""
@@ -33,7 +38,10 @@ export function checkType(type: string): AuthType {
         case "md5":
             return type;
         default:
-            logger.error(`Invalid auth type in ${CONFIG_FILE}\nAuth type can only be md5 or plain`);
+            logger.error(
+                `Invalid auth type in ${CONFIG_FILE}\n` +
+                "Auth type can only be md5 or plain"
+            );
             process.exit(1);
     }
 }
@@ -53,7 +61,11 @@ export async function createConfig(): Promise<void> {
     const fileExists = ofs.existsSync(CONFIG_FILE);
     if (!fileExists) {
         await fs.writeFile(CONFIG_FILE, defaultConf, "utf-8");
-        logger.info(`Config file created at ${CONFIG_FILE}.\nPlease edit with a username and password before continuing!`);
+        logger.info(
+            `Config file created at ${CONFIG_FILE}.\n` +
+            `Please set a username and password using ${chalk.bold("mdr set")} command before continuing!\n` +
+            "It is recommended to not manually edit this file."
+        );
         process.exit(0);
     }
 }

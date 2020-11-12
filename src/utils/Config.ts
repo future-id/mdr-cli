@@ -39,7 +39,10 @@ export class Config extends IndexSignature implements IConfig {
 
     validate(): Config {
         if (!this.authType || typeof this.authType !== "string") {
-            logger.error(`Invalid auth type in ${CONFIG_FILE}\nAuth type can only be md5 or plain`);
+            logger.error(
+                `Invalid auth type in ${CONFIG_FILE}\n` +
+                "Auth type can only be md5 or plain"
+            );
             process.exit(1);
         } else {
             checkType(this.authType);
@@ -61,7 +64,7 @@ export class Config extends IndexSignature implements IConfig {
         if (!b64) {
             logger.warn(
                 "\nYour password is saved as plain text, this can happen because of three reasons:\n" +
-                `1. You manually changed the config file ${chalk.bold("(don't do this)")}\n` +
+                `1. You manually changed the config file ${chalk.bold("(it is recommended to not do this)")}\n` +
                 "2. You're running an old version\n" +
                 "3. You just updated to version >= 1.0.0 but haven't updated your config file yet\n\n" +
                 chalk.bold("To fix this follow these steps:\n") +
