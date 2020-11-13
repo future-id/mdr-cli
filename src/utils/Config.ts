@@ -68,7 +68,7 @@ export class Config extends IndexSignature implements IConfig {
                 "2. You're running an old version\n" +
                 "3. You just updated to version >= 1.0.0 but haven't updated your config file yet\n\n" +
                 chalk.bold("To fix this follow these steps:\n") +
-                `1. Update mdr to the latest version ${chalk.bold(`npm i -g ${name}@latest`)}\n` +
+                `1. Update mdr to the latest version ${chalk.bold(`npm update -g ${name}`)}\n` +
                 `2. Update your password using ${chalk.bold("mdr set password <password>")} (replace ${chalk.bold("<password>")} with your actual password)`
             );
             process.exit(1);

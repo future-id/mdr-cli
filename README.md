@@ -15,6 +15,13 @@ MijnDomeinReseller docs: https://pepijn98.github.io/mdr-cli/
 # Installation
 `npm i -g mdr-cli@latest` or `yarn global add mdr-cli@latest`
 
+# Updating
+### Via npm
+`npm update -g mdr-cli`
+
+### Via yarn
+`yarn global upgrade mdr-cli`
+
 # Setup
 Initial usage will create a config file under your OS's preferred path \
 linux: `/home/<user>/.config/mdr-cli/settings.toml` \
