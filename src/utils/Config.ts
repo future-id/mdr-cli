@@ -99,7 +99,7 @@ export class Config extends IndexSignature implements IConfig {
 
         // If auth type is md5 encode password to md5 hash
         if (this.authType === "md5") {
-            this.password = crypto.createHash("md5").update(this.#originalPassword).digest("hex");
+            this.password = crypto.createHash("md5").update(this.password).digest("hex");
         }
 
         return this;
