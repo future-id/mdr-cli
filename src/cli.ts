@@ -25,7 +25,7 @@ async function main(): Promise<void> {
     } catch (err) {}
 
     if (update) {
-        logger.warn(`You're using an old version of ${chalk.bold(pkg.name)}, please update to the latest version ${chalk.bold(update.latest)} using ${chalk.bold("npm up -g mdr-cli@latest")}`);
+        logger.warn(`You're using an old version of ${chalk.bold(pkg.name)}, please update to the latest version ${chalk.bold(update.latest)} using ${chalk.bold("npm update -g mdr-cli@latest")}`);
     }
 
     const cmd = process.argv[2];

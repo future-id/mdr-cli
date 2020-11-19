@@ -8,6 +8,7 @@ export const subcommands: SubcommandDefinition[] = [
     },
     {
         name: "list",
+        alias: "ls",
         brief: "Get a list of all dns templates"
     },
     {
