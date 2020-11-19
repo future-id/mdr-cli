@@ -1,4 +1,4 @@
-[![NPM version](https://img.shields.io/npm/v/mdr-cli.svg?maxAge=3600)](https://www.npmjs.com/package/mdr-cli)
+[![NPM Version](https://img.shields.io/npm/v/mdr-cli/latest)](https://www.npmjs.com/package/mdr-cli)
 [![Dependencies](https://img.shields.io/librariesio/release/npm/mdr-cli)](https://www.npmjs.com/package/mdr-cli)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/Pepijn98/mdr-cli)](https://codeclimate.com/github/Pepijn98/mdr-cli/maintainability)
 [![Code Climate issues](https://img.shields.io/codeclimate/issues/Pepijn98/mdr-cli)](https://codeclimate.com/github/Pepijn98/mdr-cli/maintainability)
