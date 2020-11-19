@@ -1,37 +1,27 @@
-import {
-    Command,
-    command,
-    Options,
-    option,
-    metadata,
-    // SubcommandDefinition
-} from "clime";
+import { SubcommandDefinition } from "clime";
 
-// export const subcommands: SubcommandDefinition[] = [
-//     {
-//         name: "",
-//         alias: "",
-//         brief: ""
-//     }
-// ];
-
-export class CmdOptions extends Options {
-    @option({
-        name: "temp",
-        flag: "t",
-        description: "Temporary",
-        toggle: true
-    })
-    temp!: boolean;
-}
-
-@command()
-export default class Default extends Command {
-    @metadata
-    async execute(options: CmdOptions): Promise<void> {
-        if (options.temp || !options.temp) {
-            const help = await Default.getHelp();
-            help.print(process.stdout, process.stderr);
-        }
+export const subcommands: SubcommandDefinition[] = [
+    {
+        name: "apiPath",
+        aliases: ["path", "api-path"],
+        brief: "Get the current api path from the config file"
+    },
+    {
+        name: "authType",
+        aliases: ["auth", "auth-type"],
+        brief: "Get the current auth type from the config file"
+    },
+    {
+        name: "host",
+        brief: "Get the current host from the config file"
+    },
+    {
+        name: "ssl",
+        brief: "Get the current ssl value from the config file"
+    },
+    {
+        name: "username",
+        alias: "user",
+        brief: "Get the current username from the config file"
     }
-}
+];

@@ -1,5 +1,12 @@
 #! /usr/bin/env node
 
+/**
+ * @file Main cli file which handles all the commands
+ * @version 1.3.0
+ * @author Pepijn van den Broek <pepijn@vdbroek.dev>
+ * @license MIT
+ */
+
 import path from "path";
 import chalk from "chalk";
 import checkForUpdates from "update-check";

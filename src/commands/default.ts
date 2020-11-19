@@ -24,7 +24,7 @@ export const subcommands: SubcommandDefinition[] = [
     },
     {
         name: "get",
-        brief: "Get mdr config values (TODO)"
+        brief: "Get mdr config values"
     }
 ];
 
