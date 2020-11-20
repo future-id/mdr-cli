@@ -1,13 +1,9 @@
+.vscode/
+@types/
 docs/
 src/
-@types/
-.vscode/
-.prettierignore
-.prettierrc
+.codeclimate.yml
 .editorconfig
 .eslintignore
 .eslintrc
-.examples.md
-.do-not-commit
-.codeclimate.yml
 tsconfig.json
