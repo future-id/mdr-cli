@@ -46,6 +46,19 @@ export function checkType(type: string): AuthType {
     }
 }
 
+export function isYarnGlobal(): boolean {
+    const yarnPath = process.platform === "win32" ? path.join("Yarn", "config", "global") : path.join(".config", "yarn", "global");
+    return __dirname.includes(yarnPath);
+}
+
+export function isYarnLocal(): boolean {
+    return ofs.existsSync(path.resolve(process.cwd(), "yarn.lock"));
+}
+
+export function isYarn(): boolean {
+    return (isYarnLocal() || isYarnGlobal());
+}
+
 export function configExists(): boolean {
     const dirExists = ofs.existsSync(CONFIG_DIR);
     const fileExists = ofs.existsSync(CONFIG_FILE);

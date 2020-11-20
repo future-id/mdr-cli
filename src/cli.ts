@@ -2,17 +2,18 @@
 
 /**
  * @file Main cli file which handles all the commands
- * @version 1.3.0
+ * @version 1.3.1
  * @author Pepijn van den Broek <pepijn@vdbroek.dev>
  * @license MIT
  */
 
 import path from "path";
 import chalk from "chalk";
-import checkForUpdates from "update-check";
+import checkUpdate from "update-check";
 import pkg from "../package.json";
+import boxen, { BorderStyle } from "boxen";
 import { CLI, Shim } from "clime";
-import { configExists, createConfig, getConfigSync, logger } from "./utils/Utils";
+import { configExists, createConfig, getConfigSync, logger, isYarn } from "./utils/Utils";
 
 async function main(): Promise<void> {
     if (!configExists()) {
@@ -21,11 +22,24 @@ async function main(): Promise<void> {
 
     let update = null;
     try {
-        update = await checkForUpdates(pkg);
+        update = await checkUpdate(pkg);
     } catch (err) {}
 
     if (update) {
-        logger.warn(`You're using an old version of ${chalk.bold(pkg.name)}, please update to the latest version ${chalk.bold(update.latest)} using ${chalk.bold("npm update -g mdr-cli@latest")}`);
+        let updateCommand = `npm update -g ${pkg.name}`;
+        if (isYarn()) {
+            updateCommand = `yarn global upgrade ${pkg.name}`;
+        }
+
+        const message = boxen(`Update available ${chalk.dim(pkg.version)} → ${chalk.green(update.latest)}\nRun ${chalk.cyan(updateCommand)} to update`, {
+            padding: 1,
+            margin: 1,
+            align: "center",
+            borderColor: "yellow",
+            borderStyle: BorderStyle.Round
+        });
+
+        logger.log(message);
     }
 
     const cmd = process.argv[2];
