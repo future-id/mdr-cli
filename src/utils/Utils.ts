@@ -4,7 +4,7 @@ import chalk from "chalk";
 import Logger from "./Logger";
 import TOML from "@iarna/toml";
 import ofs, { promises as fs } from "fs";
-import { Config, IConfig } from "./Config";
+import { Config, ConfigType } from "./Config";
 import { AuthType } from "./Types";
 import { name } from "../../package.json";
 
@@ -26,7 +26,8 @@ user = ""
 password = ""
 host = "manager.mijndomeinreseller.nl"
 apiPath = "/api/"
-useSSL = true`;
+useSSL = true
+lastNotification = ${Date.now()}`;
 
 export function capitalize(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -83,15 +84,15 @@ export async function createConfig(): Promise<void> {
     }
 }
 
-export async function getConfig(): Promise<IConfig> {
+export async function getConfig(): Promise<Config> {
     const toml = await fs.readFile(CONFIG_FILE, "utf-8");
-    const cfg = (await TOML.parse.async(toml)) as IConfig;
+    const cfg = (await TOML.parse.async(toml)) as ConfigType;
     return new Config(cfg);
 }
 
 export function getConfigSync(): Config {
     const toml = ofs.readFileSync(CONFIG_FILE, "utf-8");
-    const cfg = TOML.parse(toml) as IConfig;
+    const cfg = TOML.parse(toml) as ConfigType;
     return new Config(cfg);
 }
 

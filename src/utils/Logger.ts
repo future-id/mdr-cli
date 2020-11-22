@@ -32,7 +32,7 @@ class Logger {
      * Log without any extras, just pure text
      * @param message The message to log
      */
-    log(message: string): void {
+    log(message: unknown): void {
         console.log(message);
     }
 

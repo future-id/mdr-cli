@@ -1,17 +1,19 @@
 import crypto from "crypto";
+import fs from "fs";
 import chalk from "chalk";
+import semver from "semver";
 import isBase64 from "is-base64";
 import TOML from "@iarna/toml";
-import { name } from "../../package.json";
+import { name, version } from "../../package.json";
 import { AuthType } from "./Types";
 import { CONFIG_FILE, logger, checkType } from "./Utils";
 
-export class IndexSignature {
+class IndexSignature {
     [k: string]: any;
     [k: number]: undefined;
 }
 
-export interface IConfig extends TOML.JsonMap {
+interface IConfig extends TOML.JsonMap {
     authType: AuthType;
     user: string;
     password: string;
@@ -20,20 +22,40 @@ export interface IConfig extends TOML.JsonMap {
     useSSL: boolean;
 }
 
-export class Config extends IndexSignature implements IConfig {
+// Since null and undefined are incompatible with TOML.AnyJson type
+// we have to work around it like this, idk why they did this because undefined and null is valid json
+interface NullableConfig {
+    lastNotification?: number;
+}
+
+export type ConfigType = IConfig & NullableConfig;
+
+export class Config extends IndexSignature implements ConfigType {
     authType!: AuthType;
     user!: string;
     password!: string;
     host!: string;
     apiPath!: string;
     useSSL!: boolean;
+    lastNotification!: number;
 
     #originalPassword: string;
+    #config: ConfigType;
 
-    constructor(data: IConfig) {
+    constructor(data: ConfigType) {
         super();
 
+        // If package version is greater than 1.3.1 and lastNotification is missing
+        // Fix the config file with the new property
+        if (semver.gt(version, "1.3.1") && !data.lastNotification) {
+            data.lastNotification = Date.now();
+            const newToml = TOML.stringify(data);
+            fs.writeFileSync(CONFIG_FILE, newToml, "utf-8");
+        }
+
         this.#originalPassword = data.password;
+        this.#config = data;
+
         Object.assign(this, data);
     }
 
@@ -80,7 +102,7 @@ export class Config extends IndexSignature implements IConfig {
         }
 
         if (!this.apiPath || typeof this.apiPath !== "string") {
-            logger.error(`Invalid api_path defined in ${CONFIG_FILE}`);
+            logger.error(`Invalid api path defined in ${CONFIG_FILE}`);
             process.exit(1);
         }
 
@@ -103,5 +125,12 @@ export class Config extends IndexSignature implements IConfig {
         }
 
         return this;
+    }
+
+    updateNotification(): void {
+        this.lastNotification = Date.now();
+        this.#config.lastNotification = this.lastNotification;
+        const newToml = TOML.stringify(this.#config);
+        fs.writeFileSync(CONFIG_FILE, newToml, "utf-8");
     }
 }
