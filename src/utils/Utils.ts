@@ -60,6 +60,14 @@ export function isYarn(): boolean {
     return (isYarnLocal() || isYarnGlobal());
 }
 
+export function isDev(): boolean {
+    return process.env.NODE_ENV === "development";
+}
+
+export function isDebug(): boolean {
+    return yn(process.env.MDR_DEBUG, false);
+}
+
 export function configExists(): boolean {
     const dirExists = ofs.existsSync(CONFIG_DIR);
     const fileExists = ofs.existsSync(CONFIG_FILE);

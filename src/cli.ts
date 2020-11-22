@@ -13,7 +13,15 @@ import checkUpdate from "update-check";
 import pkg from "../package.json";
 import boxen, { BorderStyle } from "boxen";
 import { CLI, Shim } from "clime";
-import { configExists, createConfig, getConfigSync, logger, isYarn } from "./utils/Utils";
+import {
+    configExists,
+    createConfig,
+    getConfigSync,
+    logger,
+    isYarn,
+    isDebug,
+    isDev
+} from "./utils/Utils";
 
 async function main(): Promise<void> {
     if (!configExists()) {
@@ -33,7 +41,7 @@ async function main(): Promise<void> {
 
         // Check if update notification is at least 12 hours ago
         // To not bother the user if they really don't want to update or the latest version is unusable
-        const diff = (Date.now() - config.lastNotification) / 1000 / 60 / 60;
+        const diff = isDebug() ? 12 : (Date.now() - config.lastNotification) / 1000 / 60 / 60;
         if (diff >= 12) {
             let updateCommand = `npm update -g ${pkg.name}`;
             if (isYarn()) {
@@ -61,7 +69,7 @@ async function main(): Promise<void> {
     }
 
     // When in development and we use ts-node make sure the commands loaded use .ts extension
-    if (process.env.NODE_ENV === "development" && __filename.endsWith(".ts")) {
+    if (isDev() && __filename.endsWith(".ts")) {
         CLI.commandModuleExtension = ".ts";
     }
 
