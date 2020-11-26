@@ -45,7 +45,7 @@ async function main(): Promise<void> {
         if (diff >= 12) {
             let updateCommand = `npm update -g ${pkg.name}`;
             if (isYarn()) {
-                updateCommand = `yarn global upgrade ${pkg.name}`;
+                updateCommand = `yarn global add ${pkg.name}@latest`;
             }
 
             const message = boxen(`Update available ${chalk.dim(pkg.version)} → ${chalk.green(update.latest)}\nRun ${chalk.cyan(updateCommand)} to update`, {
@@ -66,6 +66,7 @@ async function main(): Promise<void> {
     if (cmd !== "set" && !isValidated) {
         // Validate config synchronious
         getConfigSync().validate();
+        isValidated = true;
     }
 
     // When in development and we use ts-node make sure the commands loaded use .ts extension
