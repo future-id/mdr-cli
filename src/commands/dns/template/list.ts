@@ -1,16 +1,28 @@
 import ApiCommand from "../../../utils/ApiCommand";
 import { Template } from "../../../utils/Types";
 import { spinner } from "../../../utils/Utils";
-import { command, metadata } from "clime";
+import { command, metadata, option, Options } from "clime";
 import { ColorRenderedStyledTable, border, single, color } from "styled-cli-table";
+
+class CmdOptions extends Options {
+    @option({
+        name: "quiet",
+        flag: "q",
+        description: "Disables the loading indicator",
+        required: false,
+        toggle: true,
+        default: false
+    })
+    quiet!: boolean;
+}
 
 @command()
 export default class extends ApiCommand {
     @metadata
-    async execute(): Promise<void> {
-        spinner.start();
+    async execute(options: CmdOptions): Promise<void> {
+        if (!options.quiet) spinner.start();
 
-        this.api.newRequest();
+        this.api.newRequest(options.quiet);
 
         this.api.addParam("command", "dns_template_list");
 
@@ -20,13 +32,11 @@ export default class extends ApiCommand {
         let templateCount = 0;
         try {
             templateCount = parseInt(response.templatecount);
-        } catch (e) {
-            // ?
-        }
+        } catch (e) { }
 
         for (let i = 0; i < templateCount; i++) {
             templates.push({
-                index: String(i),
+                index: String(i + 1),
                 template_id: response[`template_id[${i}]`],
                 template_name: response[`template_name[${i}]`]
             });

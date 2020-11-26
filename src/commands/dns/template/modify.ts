@@ -50,15 +50,25 @@ class CmdOptions extends Options {
         required: true
     })
     address!: string;
+
+    @option({
+        name: "quiet",
+        flag: "q",
+        description: "Disables the loading indicator",
+        required: false,
+        toggle: true,
+        default: false
+    })
+    quiet!: boolean;
 }
 
 @command()
 export default class extends ApiCommand {
     @metadata
     async execute(options: CmdOptions): Promise<void> {
-        spinner.start();
+        if (!options.quiet) spinner.start();
 
-        this.api.newRequest();
+        this.api.newRequest(options.quiet);
 
         this.api.addParam("command", "dns_template_record_modify");
         this.api.addParam("domein", options.domain);

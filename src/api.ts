@@ -8,6 +8,7 @@ class Api {
     config: Config;
     #query: Query = {};
     #intitialized = false;
+    #quiet = false;
 
     constructor() {
         this.config = getConfigSync();
@@ -15,8 +16,9 @@ class Api {
         this.#intitialized = true;
     }
 
-    newRequest(): void {
+    newRequest(quiet = false): void {
         this.#query = {};
+        this.#quiet = quiet;
     }
 
     addParam(name: string, value: string): void {
@@ -60,19 +62,17 @@ class Api {
         let errcount = 0;
         try {
             errcount = parseInt(parsed.errcount);
-        } catch (e) {
-            // errcount == 0
-        }
+        } catch (e) { }
 
         if (errcount >= 1) {
-            spinner.stop();
+            if (!this.#quiet) spinner.stop();
             for (let i = 1; i <= errcount; i++) {
                 logger.error(`[${parsed["errno" + i]}] ${parsed["errnotxt" + i]}`);
             }
             process.exit(1);
         }
 
-        spinner.stop();
+        if (!this.#quiet) spinner.stop();
         return parsed;
     }
 }

@@ -46,6 +46,16 @@ class CmdOptions extends Options {
         required: false
     })
     begin?: string;
+
+    @option({
+        name: "quiet",
+        flag: "q",
+        description: "Disables the loading indicator",
+        required: false,
+        toggle: true,
+        default: false
+    })
+    quiet!: boolean;
 }
 
 @command({
@@ -54,9 +64,9 @@ class CmdOptions extends Options {
 export default class extends ApiCommand {
     @metadata
     async execute(options: CmdOptions): Promise<void> {
-        spinner.start();
+        if (!options.quiet) spinner.start();
 
-        this.api.newRequest();
+        this.api.newRequest(options.quiet);
 
         this.api.addParam("command", "domain_list");
 
@@ -95,13 +105,11 @@ export default class extends ApiCommand {
         let domainCount = 0;
         try {
             domainCount = parseInt(response.domeincount);
-        } catch (e) {
-            // ?
-        }
+        } catch (e) { }
 
         for (let i = 0; i < domainCount; i++) {
             domains.push({
-                index: String(i),
+                index: String(i + 1),
                 domain: response[`domein[${i}]`],
                 registrant: response[`registrant[${i}]`],
                 registrant_id: response[`registrant_id[${i}]`],

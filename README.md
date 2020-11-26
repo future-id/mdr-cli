@@ -39,7 +39,9 @@ Use `mdr set username <name>` and `mdr set password <pass>` for this!
     - `template` - Create, add, list or modify dns template records
         - `details`, `info` - Get details about a specific dns template
             - `-i`, `--template-id` \<template_id\> - Template ID **[required]**
+            - `-q`, `--quiet` - Disables the loading indicator **[optional]**
         - `list` - Get a list of all dns templates
+            - `-q`, `--quiet` - Disables the loading indicator **[optional]**
         - `modify`, `mod` - Modify dns template records
             - `-d`, `--domain` \<domain\>   - Domain name **[required]**
             - `-t`, `--tld` \<tld\>         - TLD extension of the domain name **[required]**
@@ -47,21 +49,25 @@ Use `mdr set username <name>` and `mdr set password <pass>` for this!
             - `-r`, `--record` \<record\>   - recordId of the template record to be changed **[required]**
             - `-h`, `--host` \<host\>       - Host name of the template record **[required]**
             - `-a`, `--address` \<address\> - Address, url or host name of new record **[required]**
+            - `-q`, `--quiet` - Disables the loading indicator **[optional]**
     - `details`, `info` - Get dns details from a domain
         - `-d`, `--domain` \<domain\>     - Domain name **[required]**
         - `-t`, `--tld` \<tld\>           - TLD extension of the domain name **[required]**
+        - `-q`, `--quiet` - Disables the loading indicator **[optional]**
     - `modify`, `mod`  - Modify dns records
         - `-d`, `--domain` \<domain\>   - Domain name **[required]**
         - `-t`, `--tld` \<tld\>         - TLD extension of the domain name **[required]**
         - `-r`, `--record` \<record\>   - recordId of the record to be changed **[required]**
         - `-h`, `--host` \<host\>       - Host name of the record **[required]**
         - `-a`, `--address` \<address\> - Address, url or host name of new record **[required]**
+        - `-q`, `--quiet` - Disables the loading indicator **[optional]**
 - `domain`
     - `list` - List all domains
         - `-t`, `--tld`   - Filter for a specific tld **[optional]**
         - `-s`, `--sort`  - Sort the list. Valid options are domein, registrant, admin, tech, verloopdatum or status **[optional]**
         - `-o`, `--order` - Specify in which order it should be shown (asc or desc) **[optional]**
         - `-b`, `--begin` - Show domain names starting with a letter of the alphabet, values: a-z or 0-9 **[optional]**
+        - `-q`, `--quiet` - Disables the loading indicator **[optional]**
 - `get`
     - `apiPath`, `api-path`, `path`             - Get the current api path from the config file
     - `authType`, `auth-type`, `auth`           - Get the current auth type from the config file

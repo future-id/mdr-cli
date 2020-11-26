@@ -20,15 +20,25 @@ class CmdOptions extends Options {
         required: true
     })
     tld!: string;
+
+    @option({
+        name: "quiet",
+        flag: "q",
+        description: "Disables the loading indicator",
+        required: false,
+        toggle: true,
+        default: false
+    })
+    quiet!: boolean;
 }
 
 @command()
 export default class extends ApiCommand {
     @metadata
     async execute(options: CmdOptions): Promise<void> {
-        spinner.start();
+        if (!options.quiet) spinner.start();
 
-        this.api.newRequest();
+        this.api.newRequest(options.quiet);
 
         this.api.addParam("command", "dns_get_details");
         this.api.addParam("domein", options.domain);
@@ -40,13 +50,11 @@ export default class extends ApiCommand {
         let recordCount = 0;
         try {
             recordCount = parseInt(response.recordcount);
-        } catch (e) {
-            // ?
-        }
+        } catch (e) { }
 
         for (let i = 0; i < recordCount; i++) {
             records.push({
-                index: String(i),
+                index: String(i + 1),
                 record_id: response[`record_id[${i}]`],
                 type: response[`type[${i}]`],
                 host: response[`host[${i}]`],
