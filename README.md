@@ -72,6 +72,7 @@ Use `mdr set username <name>` and `mdr set password <pass>` for this!
     - `apiPath`, `api-path`, `path`             - Get the current api path from the config file
     - `authType`, `auth-type`, `auth`           - Get the current auth type from the config file
     - `host`                                    - Get the current host from the config file
+    - `lastNotif`, `last-notif`                 - Get the current lastNotification from the config file
     - `ssl`                                     - Get the current ssl value from the config file
     - `username`, `user`                        - Get the current username from the config file
 - `set`
