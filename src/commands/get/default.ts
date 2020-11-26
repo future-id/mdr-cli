@@ -16,6 +16,15 @@ export const subcommands: SubcommandDefinition[] = [
         brief: "Get the current host from the config file"
     },
     {
+        name: "lastNotification",
+        aliases: [
+            "last-notification",
+            "last-notif",
+            "lastNotif"
+        ],
+        brief: "Get the current lastNotification from the config file"
+    },
+    {
         name: "ssl",
         brief: "Get the current ssl value from the config file"
     },
