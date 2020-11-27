@@ -22,7 +22,6 @@ import {
     isDebug,
     isDev
 } from "./utils/Utils";
-import { Config } from "./utils/Config";
 
 async function main(): Promise<void> {
     if (!configExists()) {
