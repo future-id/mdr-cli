@@ -22,51 +22,48 @@ import {
     isDebug,
     isDev
 } from "./utils/Utils";
+import { Config } from "./utils/Config";
 
 async function main(): Promise<void> {
     if (!configExists()) {
         await createConfig();
     }
 
-    let isValidated = false;
-
-    let update = null;
-    try {
-        update = await checkUpdate(pkg);
-    } catch (err) {}
-
-    if (update) {
+    // Only validate config when subcommand is not `set` since `set` is used to configure the config
+    // Also only check for updates when we can validate the config to make sure there is a valid lastNotification timestamp
+    // I don't think `set` is used that often to even need an update notification
+    const cmd = process.argv[2];
+    if (cmd !== "set") {
+        // Validate config synchronious
         const config = getConfigSync().validate();
-        isValidated = true;
-
         // Check if update notification is at least 12 hours ago
         // To not bother the user if they really don't want to update or the latest version is unusable
         const diff = isDebug() ? 12 : (Date.now() - config.lastNotification) / 1000 / 60 / 60;
         if (diff >= 12) {
-            let updateCommand = `npm update -g ${pkg.name}`;
-            if (isYarn()) {
-                updateCommand = `yarn global add ${pkg.name}@latest`;
+            let update = null;
+            try {
+                update = await checkUpdate(pkg);
+            } catch (err) {}
+
+            if (update) {
+                let updateCommand = `npm update -g ${pkg.name}`;
+                if (isYarn()) {
+                    updateCommand = `yarn global add ${pkg.name}@latest`;
+                }
+
+                const message = boxen(`Update available ${chalk.dim(pkg.version)} → ${chalk.green(update.latest)}\nRun ${chalk.cyan(updateCommand)} to update`, {
+                    padding: 1,
+                    margin: 1,
+                    align: "center",
+                    borderColor: "yellow",
+                    borderStyle: BorderStyle.Round
+                });
+
+                logger.log(message);
+
+                config.updateNotification();
             }
-
-            const message = boxen(`Update available ${chalk.dim(pkg.version)} → ${chalk.green(update.latest)}\nRun ${chalk.cyan(updateCommand)} to update`, {
-                padding: 1,
-                margin: 1,
-                align: "center",
-                borderColor: "yellow",
-                borderStyle: BorderStyle.Round
-            });
-
-            logger.log(message);
-
-            config.updateNotification();
         }
-    }
-
-    const cmd = process.argv[2];
-    if (cmd !== "set" && !isValidated) {
-        // Validate config synchronious
-        getConfigSync().validate();
-        isValidated = true;
     }
 
     // When in development and we use ts-node make sure the commands loaded use .ts extension
