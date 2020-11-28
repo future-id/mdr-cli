@@ -15,10 +15,10 @@ checks:
             threshold: 125
     complex-logic:
         config:
-            threshold: 15
+            threshold: 20
     method-complexity:
         config:
-            threshold: 15
+            threshold: 20
     similar-code:
         enabled: false
     identical-code:
