@@ -71,9 +71,8 @@ async function main(): Promise<void> {
     }
 
     const cli = new CLI("mdr", path.join(__dirname, "commands"));
-
     const shim = new Shim(cli);
-    shim.execute(process.argv);
+    await shim.execute(process.argv);
 }
 
 main().catch((e) => {
