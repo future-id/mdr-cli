@@ -6,7 +6,8 @@ import {
     Options,
     option,
     metadata,
-    SubcommandDefinition
+    SubcommandDefinition,
+    HelpInfo
 } from "clime";
 
 export const subcommands: SubcommandDefinition[] = [
@@ -41,16 +42,16 @@ export class CmdOptions extends Options {
 @command()
 export default class Default extends Command {
     @metadata
-    async execute(options: CmdOptions): Promise<void> {
+    async execute(options: CmdOptions): Promise<string | HelpInfo> {
         if (options.version) {
             let update = null;
             try {
                 update = await checkForUpdates(pkg);
             } catch (err) {}
-            console.log(`v${pkg.version}${update ? ` | latest: v${update.latest}` : ""}`);
-        } else {
-            const help = await Default.getHelp();
-            help.print(process.stdout, process.stderr);
+
+            return `v${pkg.version}${update ? ` | latest: v${update.latest}` : ""}`;
         }
+
+        return Default.getHelp();
     }
 }
