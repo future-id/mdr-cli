@@ -37,3 +37,13 @@ export interface Template {
     template_id: string;
     template_name: string;
 }
+
+export enum BorderStyle {
+    Single = "single",
+    Double = "double",
+    Round = "round",
+    Bold = "bold",
+    SingleDouble = "singleDouble",
+    DoubleSingle = "doubleSingle",
+    Classic = "classic"
+}
