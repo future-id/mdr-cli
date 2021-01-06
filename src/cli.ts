@@ -12,6 +12,7 @@ import chalk from "chalk";
 import checkUpdate from "update-check";
 import pkg from "../package.json";
 import boxen from "boxen";
+import { BorderStyle } from "./utils/Types";
 import { CLI, Shim } from "clime";
 import {
     configExists,
@@ -22,7 +23,6 @@ import {
     isDebug,
     isDev
 } from "./utils/Utils";
-import { BorderStyle } from "./utils/Types";
 
 async function main(): Promise<void> {
     if (!configExists()) {
