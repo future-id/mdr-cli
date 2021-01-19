@@ -37,8 +37,8 @@ export default class extends ApiCommand {
         for (let i = 0; i < templateCount; i++) {
             templates.push({
                 index: String(i + 1),
-                template_id: response[`template_id[${i}]`],
-                template_name: response[`template_name[${i}]`]
+                id: response[`template_id[${i}]`],
+                name: response[`template_name[${i}]`]
             });
         }
 
@@ -47,7 +47,7 @@ export default class extends ApiCommand {
         ];
 
         for (const item of templates) {
-            data.push([item.index, item.template_id, item.template_name]);
+            data.push([item.index, item.id, item.name]);
         }
 
         const table = new ColorRenderedStyledTable(data, {

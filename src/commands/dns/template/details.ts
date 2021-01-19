@@ -46,7 +46,7 @@ export default class extends ApiCommand {
         for (let i = 0; i < recordCount; i++) {
             records.push({
                 index: String(i + 1),
-                record_id: response[`record_id[${i}]`],
+                id: response[`record_id[${i}]`],
                 type: response[`type[${i}]`],
                 host: response[`host[${i}]`],
                 address: response[`address[${i}]`],
@@ -63,7 +63,7 @@ export default class extends ApiCommand {
         for (const record of records) {
             data.push([
                 record.index,
-                record.record_id,
+                record.id,
                 record.type,
                 record.host,
                 record.address,

@@ -23,19 +23,20 @@ export interface Domain {
 
 export interface DNSRecord {
     index: string;
-    record_id: string;
+    id: string;
     type: string;
     host: string;
     address: string;
     priority: string;
     weight: string;
     port: string;
+    [x: string]: string;
 }
 
 export interface Template {
     index: string;
-    template_id: string;
-    template_name: string;
+    id: string;
+    name: string;
 }
 
 export enum BorderStyle {

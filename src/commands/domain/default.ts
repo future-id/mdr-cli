@@ -6,4 +6,12 @@ export const subcommands: SubcommandDefinition[] = [
         alias: "ls",
         brief: "List all domains"
     },
+    {
+        name: "record",
+        brief: "Get domain record data"
+    },
+    {
+        name: "template",
+        brief: "Get template id from domain"
+    }
 ];

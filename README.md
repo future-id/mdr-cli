@@ -36,31 +36,61 @@ Use `mdr set username <name>` and `mdr set password <pass>` for this!
 - `-h`, `--help` - Show help message (`--help` also works on all subcommands, `-h` doesn't) **[optional]**
 - `-v`, `--version` - Show current version **[optional]**
 - `dns`
+    - `record` - Add/remove dns records
+        - `add`, `new` - Add a new record
+            - `-q`, `--quiet`                   - Disables the loading indicator **[optional]**
+            - `-d`, `--domain` \<domain\>       - Domain name **[required]**
+            - `-t`, `--tld` \<tld\>             - TLD extension of the domain name **[required]**
+            - `-r`, `--type` \<record_type\>    - Record type A, AAAA, TXT, MX..... **[required]**
+            - `-h`, `--host` \<host\>           - Hostname of the record **[required]**
+            - `-a`, `--address` \<address\>     - Address/url/hostname of new record **[required]**
+            - `-p`, `--priority` \<priority\>   - Priority of the new record (SRV/MX ONLY) **[optional]**
+            - `-w`, `--weight` \<weight\>       - Weight of the new record (SRV ONLY) **[optional]**
+            - `--port` \<port\>                 - Port of the new record (SRV ONLY) **[optional]**
+        - `remove`, `delete`, `del`, `rm` - Delete an existing record
+            - `-q`, `--quiet`                   - Disables the loading indicator **[optional]**
+            - `-d`, `--domain` \<domain\>       - Domain name **[required]**
+            - `-t`, `--tld` \<tld\>             - TLD extension of the domain name **[required]**
+            - `-r`, `--record` \<record_id\>    - Record ID of the record to be deleted **[required]**
     - `template` - Create, add, list or modify dns template records
+        - `record` - Add/remove dns records
+            - `add`, `new` - Add a new record to the template
+                - `-q`, `--quiet`                       - Disables the loading indicator **[optional]**
+                - `-i`, `--template-id` \<template_id\> - Template ID **[required]**
+                - `-r`, `--type` \<record_type\>        - Record type A, AAAA, TXT, MX..... **[required]**
+                - `-h`, `--host` \<host\>               - Hostname of the record **[required]**
+                - `-a`, `--address` \<address\>         - Address/url/hostname of new record **[required]**
+                - `-p`, `--priority` \<priority\>       - Priority of the new record (SRV/MX ONLY) **[optional]**
+                - `-w`, `--weight` \<weight\>           - Weight of the new record (SRV ONLY) **[optional]**
+                - `--port` \<port\>                     - Port of the new record (SRV ONLY) **[optional]**
+            - `remove`, `delete`, `del`, `rm` - Delete an existing record from the template
+                - `-q`, `--quiet`                       - Disables the loading indicator **[optional]**
+                - `-i`, `--template-id` \<template_id\> - Template ID **[required]**
+                - `-r`, `--record` \<record_id\>        - Record ID of the record to be deleted **[required]**
         - `details`, `info` - Get details about a specific dns template
             - `-i`, `--template-id` \<template_id\> - Template ID **[required]**
-            - `-q`, `--quiet` - Disables the loading indicator **[optional]**
+            - `-q`, `--quiet`                       - Disables the loading indicator **[optional]**
         - `list` - Get a list of all dns templates
             - `-q`, `--quiet` - Disables the loading indicator **[optional]**
         - `modify`, `mod` - Modify dns template records
-            - `-d`, `--domain` \<domain\>   - Domain name **[required]**
-            - `-t`, `--tld` \<tld\>         - TLD extension of the domain name **[required]**
+            - `-d`, `--domain` \<domain\>           - Domain name **[required]**
+            - `-t`, `--tld` \<tld\>                 - TLD extension of the domain name **[required]**
             - `-i`, `--template-id` \<template_id\> - Template id the record is part off **[required]**
-            - `-r`, `--record` \<record\>   - recordId of the template record to be changed **[required]**
-            - `-h`, `--host` \<host\>       - Host name of the template record **[required]**
-            - `-a`, `--address` \<address\> - Address, url or host name of new record **[required]**
-            - `-q`, `--quiet` - Disables the loading indicator **[optional]**
+            - `-r`, `--record` \<record\>           - recordId of the template record to be changed **[required]**
+            - `-h`, `--host` \<host\>               - Host name of the template record **[required]**
+            - `-a`, `--address` \<address\>         - Address, url or host name of new record **[required]**
+            - `-q`, `--quiet`                       - Disables the loading indicator **[optional]**
     - `details`, `info` - Get dns details from a domain
-        - `-d`, `--domain` \<domain\>     - Domain name **[required]**
-        - `-t`, `--tld` \<tld\>           - TLD extension of the domain name **[required]**
-        - `-q`, `--quiet` - Disables the loading indicator **[optional]**
+        - `-d`, `--domain` \<domain\>   - Domain name **[required]**
+        - `-t`, `--tld` \<tld\>         - TLD extension of the domain name **[required]**
+        - `-q`, `--quiet`               - Disables the loading indicator **[optional]**
     - `modify`, `mod`  - Modify dns records
         - `-d`, `--domain` \<domain\>   - Domain name **[required]**
         - `-t`, `--tld` \<tld\>         - TLD extension of the domain name **[required]**
         - `-r`, `--record` \<record\>   - recordId of the record to be changed **[required]**
         - `-h`, `--host` \<host\>       - Host name of the record **[required]**
         - `-a`, `--address` \<address\> - Address, url or host name of new record **[required]**
-        - `-q`, `--quiet` - Disables the loading indicator **[optional]**
+        - `-q`, `--quiet`               - Disables the loading indicator **[optional]**
 - `domain`
     - `list` - List all domains
         - `-t`, `--tld`   - Filter for a specific tld **[optional]**
@@ -68,6 +98,18 @@ Use `mdr set username <name>` and `mdr set password <pass>` for this!
         - `-o`, `--order` - Specify in which order it should be shown (asc or desc) **[optional]**
         - `-b`, `--begin` - Show domain names starting with a letter of the alphabet, values: a-z or 0-9 **[optional]**
         - `-q`, `--quiet` - Disables the loading indicator **[optional]**
+    - `record` - Get domain record data
+        - `-d`, `--domain`      - Domain name **[optional]**
+        - `-t`, `--tld`         - TLD extension of the domain name **[optional]**
+        - `-i`, `--template-id` - Template ID **[optional]**
+        - `-r`, `--type`        - Record type A, AAAA, TXT, MX..... (ALL to show all record types) **[required]**
+        - `-h`, `--host`        - Record host **[optional]**
+        - `-p`, `--property`    - Get a certain property e.g. id, type, host, address, priority, weight or port **[optional]**
+        - `-q`, `--quiet`       - Disables the loading indicator **[optional]**
+    - `template` - Get template id from domain
+        - `-d`, `--domain`  - Domain name **[required]**
+        - `-t`, `--tld`     - TLD extension of the domain name **[required]**
+        - `-q`, `--quiet`   - Disables the loading indicator **[optional]**
 - `get`
     - `apiPath`, `api-path`, `path`             - Get the current api path from the config file
     - `authType`, `auth-type`, `auth`           - Get the current auth type from the config file

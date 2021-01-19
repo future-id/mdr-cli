@@ -1,6 +1,6 @@
 {
     "name": "mdr-cli",
-    "version": "1.4.2",
+    "version": "1.5.0",
     "description": "cli to interact with the mijndomeinreseller api",
     "keywords": [
         "cli",
@@ -31,6 +31,7 @@
         "mdr": "./dist/src/cli.js"
     },
     "scripts": {
+        "setup": "yarn && yarn build && yarn link",
         "test": "cross-env NODE_ENV=development ts-node ./src/cli.ts",
         "mdr": "cross-env NODE_ENV=development ts-node ./src/cli.ts",
         "prebuild": "rm -rf dist",
@@ -39,9 +40,12 @@
         "format": "prettier --write \"src/**/*.{ts,js}\"",
         "lint": "eslint \"src/**/*.{ts,js}\" --fix",
         "clean": "rm -rf ./node_modules ./package-lock.json ./yarn.lock",
-        "setup": "yarn && yarn build && yarn link",
-        "prepublishOnly": "yarn build"
+        "prepublishOnly": "yarn build",
+        "bumpVersion": "./bin/bump-version minor"
     },
+    "pre-commit": [
+        "bumpVersion"
+    ],
     "dependencies": {
         "@iarna/toml": "^2.2.5",
         "axios": "^0.21.1",
@@ -58,13 +62,14 @@
     },
     "devDependencies": {
         "@types/is-base64": "^1.1.0",
-        "@types/node": "^14.14.20",
+        "@types/node": "^14.14.21",
         "@types/semver": "^7.3.4",
-        "@typescript-eslint/eslint-plugin": "^4.12.0",
-        "@typescript-eslint/parser": "^4.12.0",
+        "@typescript-eslint/eslint-plugin": "^4.14.0",
+        "@typescript-eslint/parser": "^4.14.0",
         "cross-env": "^7.0.3",
-        "eslint": "^7.17.0",
-        "gts": "^3.0.3",
+        "eslint": "^7.18.0",
+        "gts": "^3.1.0",
+        "pre-commit": "^1.2.2",
         "ts-node": "^9.1.1",
         "typescript": "^4.1.3"
     }
