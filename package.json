@@ -22,7 +22,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Pepijn98/mdr-cli.git"
+        "url": "git+https://github.com/future-id/mdr-cli.git"
     },
     "engines": {
         "node": ">=14"
