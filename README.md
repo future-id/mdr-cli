@@ -1,4 +1,4 @@
-[![Build](https://github.com/Pepijn98/mdr-cli/workflows/Build/badge.svg)](./)
+[![Build](https://github.com/Pepijn98/mdr-cli/workflows/Build/badge.svg)](https://github.com/future-id/mdr-cli)
 [![NPM Version](https://img.shields.io/npm/v/mdr-cli/latest)](https://www.npmjs.com/package/mdr-cli)
 [![Dependencies](https://img.shields.io/librariesio/release/npm/mdr-cli)](https://www.npmjs.com/package/mdr-cli)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/Pepijn98/mdr-cli)](https://codeclimate.com/github/Pepijn98/mdr-cli/maintainability)
@@ -6,7 +6,7 @@
 
 # mdr-cli
 cli to interact with the mijndomeinreseller api \
-MijnDomeinReseller docs: https://pepijn98.github.io/mdr-cli/
+MijnDomeinReseller docs: https://pepijn98.github.io/mdr-docs/
 
 # Requirements
 - NodeJS 14+
