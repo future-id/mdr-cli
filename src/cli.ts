@@ -2,7 +2,7 @@
 
 /**
  * @file Main cli file which handles all the commands
- * @version 1.3.2
+ * @version 1.5.0
  * @author Pepijn van den Broek <pepijn@vdbroek.dev>
  * @license MIT
  */

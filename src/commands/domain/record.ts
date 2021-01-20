@@ -3,6 +3,7 @@ import { logger, spinner } from "../../utils/Utils";
 import { command, metadata, option, Options } from "clime";
 import { DNSRecord } from "src/utils/Types";
 import { ColorRenderedStyledTable, border, single, color } from "styled-cli-table";
+import chalk from "chalk";
 
 const allowedProps = ["id", "type", "host", "address", "priority", "weight", "port"];
 
@@ -123,6 +124,11 @@ export default class extends ApiCommand {
             : options.host
                 ? records.filter((record) => record.type === options.type.toUpperCase() && record.host === options.host)
                 : records.filter((record) => record.type === options.type.toUpperCase());
+
+        if (filtered.length <= 0) {
+            logger.error(`No record found with type: ${chalk.bold(options.type)} ${options.host ? `and host: ${chalk.bold(options.host)}` : ""}`.trim());
+            return;
+        }
 
         // If a property is given log it as plain text else show table of records
         if (options.property && allowedProps.includes(options.property)) {
