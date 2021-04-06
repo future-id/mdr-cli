@@ -29,11 +29,11 @@ Initial usage will create a config file under your OS's preferred path \
 linux: `/home/<user>/.config/mdr-cli/settings.toml` \
 mac: `/Users/<user>/Library/Preferences/mdr-cli/settings.toml` \
 windows: `Users\<user>\AppData\mdr-cli\settings.toml` \
-It will quit after creating the config because you have to add a user and pssword to this file. \
+It will quit after creating the config because you have to add a user and password to this file. \
 Use `mdr set username <name>` and `mdr set password <pass>` for this!
 
 # Usage
-`mdr` \<subcommand\> [...options]
+`mdr` \<subcommand(s)\> [...options]
 - `-h`, `--help` - Show help message (`--help` also works on all subcommands, `-h` doesn't) **[optional]**
 - `-v`, `--version` - Show current version **[optional]**
 - `dns`
