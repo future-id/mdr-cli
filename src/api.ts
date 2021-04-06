@@ -32,7 +32,18 @@ class Api {
 
         for (let i = 0; i < lineCount; i++) {
             if (lines[i].substr(1, 1) !== ";") {
-                const [key, value] = lines[i].split("=");
+                let key: string;
+                let value: string;
+
+                const split = lines[i].split("=");
+                if (split.length > 2) {
+                    key = split.shift()!;
+                    value = split.join("=");
+                } else {
+                    key = split[0];
+                    value = split[1];
+                }
+
                 result[key] = value;
             }
         }

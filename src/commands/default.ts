@@ -1,5 +1,6 @@
 import pkg from "../../package.json";
 import checkForUpdates from "update-check";
+import { isDev } from "../utils/Utils";
 import {
     Command,
     command,
@@ -49,7 +50,7 @@ export default class Default extends Command {
                 update = await checkForUpdates(pkg);
             } catch (err) {}
 
-            return `v${pkg.version}${update ? ` | latest: v${update.latest}` : ""}`;
+            return `v${pkg.version}${update ? ` | latest: v${update.latest}` : isDev() ? "-dev" : ""}`;
         }
 
         return Default.getHelp();
