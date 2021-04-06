@@ -1,5 +1,5 @@
 import ApiCommand from "../../utils/ApiCommand";
-import { logger, spinner } from "../../utils/Utils";
+import { logger, Regex, spinner } from "../../utils/Utils";
 import { command, metadata, option, Options } from "clime";
 import { DNSRecord } from "src/utils/Types";
 import { ColorRenderedStyledTable, border, single, color } from "styled-cli-table";
@@ -8,6 +8,14 @@ import chalk from "chalk";
 const allowedProps = ["id", "type", "host", "address", "priority", "weight", "port"];
 
 class CmdOptions extends Options {
+    @option({
+        name: "full-domain",
+        flag: "f",
+        description: "Domain name + TLD",
+        required: false
+    })
+    full_domain!: string;
+
     @option({
         name: "domain",
         flag: "d",
@@ -72,8 +80,8 @@ export default class extends ApiCommand {
     @metadata
     async execute(options: CmdOptions): Promise<void> {
         // At least one of these needs to be defined
-        if (!options.template_id && !options.domain && !options.tld) {
-            logger.error("At least one of template_id, domain or tld needs to be defined.");
+        if (!options.template_id && !options.full_domain && !options.domain && !options.tld) {
+            logger.error("At least one of template_id, full_domain or domain + tld needs to be defined.");
             return;
         }
 
@@ -91,6 +99,18 @@ export default class extends ApiCommand {
         if (options.template_id) {
             this.api.addParam("command", "dns_template_get_details");
             this.api.addParam("template_id", options.template_id);
+        } else if (options.full_domain) { // TODO : Test (mdr domain record -f <domain.tld> -r ALL)
+            if (!Regex.domain.test(options.full_domain)) {
+                logger.error(`Invalid domain, valid patterns are ${chalk.bold("example.com")} and ${chalk.bold("example.co.uk")}`);
+                return;
+            }
+
+            const split = options.full_domain.split(".");
+            const tld = split[split.length - 1];
+            const domain = options.full_domain.replace(`.${tld}`, "");
+            this.api.addParam("command", "dns_get_details");
+            this.api.addParam("domein", domain);
+            this.api.addParam("tld", tld);
         } else {
             this.api.addParam("command", "dns_get_details");
             this.api.addParam("domein", options.domain);
@@ -118,15 +138,19 @@ export default class extends ApiCommand {
             });
         }
 
-        // Filter records by type and host
-        const filtered = options.type.toUpperCase() === "ALL"
+        // Filter records by type
+        let filtered = options.type.toUpperCase() === "ALL"
             ? records
-            : options.host
-                ? records.filter((record) => record.type === options.type.toUpperCase() && record.host === options.host)
-                : records.filter((record) => record.type === options.type.toUpperCase());
+            : records.filter((record) => record.type === options.type.toUpperCase());
+
+        // Filter records by host name
+        if (options.host) {
+            filtered = filtered.filter((record) => record.host === options.host);
+        }
 
         if (filtered.length <= 0) {
-            logger.error(`No record found with type: ${chalk.bold(options.type)} ${options.host ? `and host: ${chalk.bold(options.host)}` : ""}`.trim());
+            if (options.quiet) logger.log(0);
+            else logger.error(`No record found with type: ${chalk.bold(options.type)} ${options.host ? `and host: ${chalk.bold(options.host)}` : ""}`.trim());
             return;
         }
 

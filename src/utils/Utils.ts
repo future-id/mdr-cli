@@ -8,6 +8,10 @@ import { Config, ConfigType } from "./Config";
 import { AuthType } from "./Types";
 import { name } from "../../package.json";
 
+export const Regex = {
+    domain: /^\w+\.[a-zA-Z]{2,3}(\.[a-zA-Z]{2,3})?$/gui
+};
+
 export const logger = new Logger();
 export const spinner = ora("Loading");
 

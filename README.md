@@ -100,17 +100,19 @@ Use `mdr set username <name>` and `mdr set password <pass>` for this!
         - `-b`, `--begin` - Show domain names starting with a letter of the alphabet, values: a-z or 0-9 **[optional]**
         - `-q`, `--quiet` - Disables the loading indicator **[optional]**
     - `record` - Get domain record data
+        - `-f`, `--full-domain` - Instead of using `-d` and `-t` you can use this instead domain + tld `example.com` **[optional]**
         - `-d`, `--domain`      - Domain name **[optional]**
         - `-t`, `--tld`         - TLD extension of the domain name **[optional]**
         - `-i`, `--template-id` - Template ID **[optional]**
         - `-r`, `--type`        - Record type A, AAAA, TXT, MX..... (ALL to show all record types) **[required]**
         - `-h`, `--host`        - Record host **[optional]**
         - `-p`, `--property`    - Get a certain property e.g. id, type, host, address, priority, weight or port **[optional]**
-        - `-q`, `--quiet`       - Disables the loading indicator **[optional]**
+        - `-q`, `--quiet`       - Disables the loading indicator and returns 0 instead of throwing an error when record not found **[optional]**
     - `template` - Get template id from domain
-        - `-d`, `--domain`  - Domain name **[required]**
-        - `-t`, `--tld`     - TLD extension of the domain name **[required]**
-        - `-q`, `--quiet`   - Disables the loading indicator **[optional]**
+        - `-f`, `--full-domain` - Instead of using `-d` and `-t` you can use this instead domain + tld `example.com` **[optional]**
+        - `-d`, `--domain`  - Domain name **[optional]**
+        - `-t`, `--tld`     - TLD extension of the domain name **[optional]**
+        - `-q`, `--quiet`       - Disables the loading indicator and returns 0 instead of throwing an error when record not found **[optional]**
 - `get`
     - `apiPath`, `api-path`, `path`             - Get the current api path from the config file
     - `authType`, `auth-type`, `auth`           - Get the current auth type from the config file

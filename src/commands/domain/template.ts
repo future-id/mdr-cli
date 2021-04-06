@@ -5,6 +5,14 @@ import { Template } from "src/utils/Types";
 
 class CmdOptions extends Options {
     @option({
+        name: "full-domain",
+        flag: "f",
+        description: "Domain name + TLD",
+        required: false
+    })
+    full_domain!: string;
+
+    @option({
         name: "domain",
         flag: "d",
         description: "Domain name",
@@ -39,8 +47,18 @@ export default class extends ApiCommand {
         if (!options.quiet) spinner.start();
         this.api.newRequest(options.quiet);
         this.api.addParam("command", "domain_get_details");
-        this.api.addParam("domein", options.domain);
-        this.api.addParam("tld", options.tld);
+
+        if (options.full_domain) {
+            const split = options.full_domain.split(".");
+            const tld = split[split.length - 1];
+            const domain = options.full_domain.replace(`.${tld}`, "");
+            this.api.addParam("domein", domain);
+            this.api.addParam("tld", tld);
+        } else {
+            this.api.addParam("domein", options.domain);
+            this.api.addParam("tld", options.tld);
+        }
+
         const details = await this.api.send();
         const templateName = details["dns_template"];
 
@@ -67,7 +85,8 @@ export default class extends ApiCommand {
         //== SECTION: FIND TEMPLATE BY NAME ==//
         const template = templates.find((t) => t.name === templateName);
         if (!template) {
-            logger.error("Template not found.");
+            if (options.quiet) logger.log(0);
+            else logger.error("Template not found.");
             return;
         }
 
